@@ -1,0 +1,33 @@
+---
+title: "Why real-world AI systems need more than models"
+description: "On evaluation, reliability, and the gap between benchmarks and production."
+date: 2026-05-12
+category: "Research Note"
+tags: ["AI Systems", "Evaluation", "Production"]
+draft: false
+---
+
+## Benchmarks are not operating conditions
+
+Benchmarks are useful for comparing model capability, but production systems fail in quieter ways: stale context, malformed inputs, missing provenance, unclear confidence, and workflows that cannot recover when an answer is uncertain.
+
+## The system around the model
+
+Real-world AI needs a layer around the model that can retrieve context, structure outputs, validate claims, route uncertain cases, and preserve an audit trail.
+
+<div class="pipeline">
+  <span>Input</span>
+  <span>→</span>
+  <span>Context</span>
+  <span>→</span>
+  <span>Model</span>
+  <span>→</span>
+  <span>Validation</span>
+  <span>→</span>
+  <span>Workflow</span>
+</div>
+
+## Reliability is designed
+
+The most durable AI products treat model output as one signal inside a system. They measure quality, expose uncertainty, and make failure modes visible enough to improve.
+

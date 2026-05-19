@@ -1,0 +1,267 @@
+---
+type DotType = "solid" | "hollow-circle" | "hollow-square";
+
+type Dot = {
+  x: number;
+  y: number;
+  type: DotType;
+  size?: number;
+  opacity?: number;
+  delay?: number;
+};
+
+const width = 520;
+const height = 360;
+
+const gridSegments = [
+  { d: "M 58 68 H 208" },
+  { d: "M 252 68 H 454" },
+  { d: "M 96 110 H 430" },
+  { d: "M 50 152 H 188" },
+  { d: "M 226 152 H 486" },
+  { d: "M 70 194 H 314" },
+  { d: "M 356 194 H 470" },
+  { d: "M 106 236 H 432" },
+  { d: "M 66 278 H 210" },
+  { d: "M 248 278 H 380" },
+  { d: "M 96 34 V 120" },
+  { d: "M 96 162 V 284" },
+  { d: "M 138 68 V 248" },
+  { d: "M 180 68 V 278" },
+  { d: "M 222 96 V 300" },
+  { d: "M 264 66 V 244" },
+  { d: "M 306 88 V 318" },
+  { d: "M 348 50 V 250" },
+  { d: "M 390 84 V 292" },
+  { d: "M 432 70 V 232" },
+  { d: "M 474 112 V 194" },
+];
+
+const fiberLines = [
+  { id: "fiber-a", d: "M 44 152 H 138 V 68 H 254 V 236 H 436" },
+  { id: "fiber-b", d: "M 102 318 V 236 H 180 V 110 H 430" },
+  { id: "fiber-c", d: "M 66 278 H 222 V 152 H 486" },
+  { id: "fiber-d", d: "M 474 194 H 306 V 68 H 58" },
+  { id: "fiber-e", d: "M 138 68 V 194 H 306 V 318" },
+  { id: "fiber-f", d: "M 36 110 H 96 V 278 H 390" },
+];
+
+const fiberLights = [
+  { pathId: "fiber-a", r: 2.5, delay: -0.4, dur: 6.8 },
+  { pathId: "fiber-a", r: 1.65, delay: -4.8, dur: 7.4 },
+  { pathId: "fiber-b", r: 2.2, delay: -1.7, dur: 7.2 },
+  { pathId: "fiber-b", r: 1.55, delay: -5.2, dur: 6.4 },
+  { pathId: "fiber-c", r: 2.45, delay: -2.8, dur: 6.2 },
+  { pathId: "fiber-d", r: 2.0, delay: -3.5, dur: 7.8 },
+  { pathId: "fiber-e", r: 1.75, delay: -1.1, dur: 6.9 },
+  { pathId: "fiber-f", r: 2.25, delay: -4.0, dur: 8.1 },
+];
+
+const dots: Dot[] = [
+  { x: 96, y: 68, type: "solid", size: 2.1, opacity: 0.8, delay: -0.5 },
+  { x: 180, y: 68, type: "hollow-circle", size: 2.8, opacity: 0.45, delay: -2.2 },
+  { x: 306, y: 68, type: "solid", size: 1.75, opacity: 0.7, delay: -4.1 },
+  { x: 430, y: 110, type: "hollow-square", size: 3.0, opacity: 0.42, delay: -1.2 },
+  { x: 50, y: 152, type: "hollow-circle", size: 2.8, opacity: 0.36, delay: -3.1 },
+  { x: 138, y: 152, type: "solid", size: 2.05, opacity: 0.76, delay: -1.6 },
+  { x: 180, y: 152, type: "solid", size: 1.9, opacity: 0.66, delay: -5.4 },
+  { x: 222, y: 152, type: "solid", size: 1.8, opacity: 0.58, delay: -3.7 },
+  { x: 432, y: 152, type: "solid", size: 2.0, opacity: 0.82, delay: -0.9 },
+  { x: 96, y: 194, type: "solid", size: 2.05, opacity: 0.74, delay: -4.5 },
+  { x: 138, y: 194, type: "solid", size: 1.95, opacity: 0.82, delay: -2.4 },
+  { x: 180, y: 194, type: "solid", size: 1.8, opacity: 0.7, delay: -0.2 },
+  { x: 222, y: 194, type: "hollow-square", size: 3.0, opacity: 0.4, delay: -5.9 },
+  { x: 486, y: 194, type: "solid", size: 1.85, opacity: 0.74, delay: -1.8 },
+  { x: 138, y: 236, type: "solid", size: 1.8, opacity: 0.56, delay: -3.5 },
+  { x: 180, y: 236, type: "solid", size: 1.75, opacity: 0.58, delay: -6.2 },
+  { x: 222, y: 236, type: "solid", size: 1.75, opacity: 0.6, delay: -2.6 },
+  { x: 96, y: 278, type: "hollow-circle", size: 2.75, opacity: 0.36, delay: -0.8 },
+  { x: 180, y: 278, type: "hollow-circle", size: 2.75, opacity: 0.38, delay: -4.9 },
+  { x: 222, y: 278, type: "solid", size: 1.9, opacity: 0.64, delay: -1.4 },
+  { x: 264, y: 278, type: "solid", size: 2.05, opacity: 0.78, delay: -3.9 },
+  { x: 348, y: 278, type: "hollow-circle", size: 2.85, opacity: 0.36, delay: -2.0 },
+  { x: 222, y: 320, type: "solid", size: 2.05, opacity: 0.86, delay: -5.1 },
+];
+---
+
+<div class="signal-grid-dots" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${width} ${height}`} role="img" aria-label="Animated signal grid">
+    <defs>
+      <radialGradient id="signalGlow" cx="50%" cy="50%" r="60%">
+        <stop offset="0%" stop-color="var(--signal-glow)" stop-opacity="var(--signal-glow-start)" />
+        <stop offset="55%" stop-color="var(--signal-glow)" stop-opacity="var(--signal-glow-mid)" />
+        <stop offset="100%" stop-color="var(--signal-glow)" stop-opacity="0" />
+      </radialGradient>
+
+      <radialGradient id="signalOrb" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+        <stop offset="42%" stop-color="var(--signal-light)" stop-opacity="0.95" />
+        <stop offset="100%" stop-color="var(--signal-light)" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+
+    <ellipse class="signal-glow" cx="256" cy="178" rx="230" ry="142" />
+
+    <g class="signal-grid" aria-hidden="true">
+      {gridSegments.map((segment) => <path d={segment.d} />)}
+    </g>
+
+    <g class="signal-fibers" aria-hidden="true">
+      {fiberLines.map((line) => <path id={line.id} d={line.d} />)}
+    </g>
+
+    <g class="signal-lights" aria-hidden="true">
+      {fiberLights.map((light, index) => (
+        <g class="light-packet" style={`--delay: ${light.delay}s; --dur: ${light.dur}s`}>
+          <circle class="light-halo" r={light.r * 3.9} />
+          <circle class="light-core" r={light.r} />
+          <animateMotion dur={`${light.dur}s`} begin={`${light.delay}s`} repeatCount="indefinite" rotate="auto">
+            <mpath href={`#${light.pathId}`} />
+          </animateMotion>
+        </g>
+      ))}
+    </g>
+
+    <g class="signal-dots">
+      {dots.map((dot) => {
+        const dotClass = `dot ${dot.type}`;
+        const style = `--dot-opacity: ${dot.opacity ?? 1}; --delay: ${dot.delay ?? 0}s`;
+        return dot.type === "solid" ? (
+          <circle class={dotClass} cx={dot.x} cy={dot.y} r={dot.size ?? 2} style={style} />
+        ) : dot.type === "hollow-circle" ? (
+          <circle class={`${dotClass} hollow`} cx={dot.x} cy={dot.y} r={dot.size ?? 2.8} style={style} />
+        ) : (
+          <rect class={`${dotClass} hollow`} x={dot.x - (dot.size ?? 3)} y={dot.y - (dot.size ?? 3)} width={(dot.size ?? 3) * 2} height={(dot.size ?? 3) * 2} rx="0.8" style={style} />
+        );
+      })}
+    </g>
+  </svg>
+</div>
+
+<style>
+  .signal-grid-dots {
+    width: min(540px, 100%);
+    color: var(--signal-node);
+    isolation: isolate;
+  }
+
+  .signal-grid-dots svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    shape-rendering: geometricPrecision;
+  }
+
+  .signal-glow {
+    fill: url("#signalGlow");
+    animation: signalGlowBreath 12s ease-in-out infinite;
+  }
+
+  .signal-grid path {
+    fill: none;
+    stroke: var(--signal-grid);
+    stroke-width: 0.8;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 5 5;
+    opacity: var(--signal-grid-opacity);
+    animation: gridCurrent 7.5s linear infinite;
+  }
+
+  .signal-grid path:nth-child(3n) { animation-duration: 9s; opacity: calc(var(--signal-grid-opacity) * 0.78); }
+  .signal-grid path:nth-child(4n) { animation-direction: reverse; opacity: calc(var(--signal-grid-opacity) * 0.86); }
+
+  .signal-fibers path {
+    fill: none;
+    stroke: var(--signal-fiber);
+    stroke-width: 1.08;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.1;
+    stroke-dasharray: 0.5 10;
+    animation: fiberWake 5.8s ease-in-out infinite;
+  }
+
+  .signal-fibers path:nth-child(2n) { animation-delay: -2.6s; }
+  .signal-fibers path:nth-child(3n) { animation-delay: -4.2s; }
+
+  .light-core {
+    fill: url("#signalOrb");
+    filter: drop-shadow(0 0 8px color-mix(in srgb, var(--signal-light) 80%, transparent));
+  }
+
+  .light-halo {
+    fill: var(--signal-light);
+    opacity: 0.14;
+    filter: blur(2px);
+    animation: packetPulse 1.8s ease-in-out infinite;
+  }
+
+  .signal-dots {
+    fill: var(--signal-node);
+    stroke: var(--signal-node);
+  }
+
+  .dot {
+    opacity: var(--dot-opacity);
+    animation: dotWake 6.5s ease-in-out infinite;
+    animation-delay: var(--delay);
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .dot.hollow {
+    fill: var(--signal-hollow-fill);
+    fill-opacity: var(--signal-hollow-alpha);
+    stroke-width: 0.9;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .dot.hollow-square {
+    transform-origin: center;
+    animation-name: dotWake, squareDrift;
+    animation-duration: 6.5s, 13s;
+  }
+
+  @keyframes signalGlowBreath {
+    0%, 100% { opacity: 0.64; transform: scale(0.985); }
+    50% { opacity: 1; transform: scale(1.015); }
+  }
+
+  @keyframes gridCurrent {
+    to { stroke-dashoffset: -40; }
+  }
+
+  @keyframes fiberWake {
+    0%, 100% { opacity: 0.08; stroke-dashoffset: 0; }
+    45%, 55% { opacity: 0.24; }
+    100% { stroke-dashoffset: -42; }
+  }
+
+  @keyframes packetPulse {
+    0%, 100% { opacity: 0.1; transform: scale(0.75); }
+    50% { opacity: 0.24; transform: scale(1.25); }
+  }
+
+  @keyframes dotWake {
+    0%, 100% { opacity: calc(var(--dot-opacity) * 0.72); transform: scale(0.92); }
+    45%, 55% { opacity: 1; transform: scale(1.22); }
+  }
+
+  @keyframes squareDrift {
+    0%, 100% { rotate: 0deg; }
+    50% { rotate: 7deg; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .signal-grid path,
+    .signal-fibers path,
+    .light-halo,
+    .dot,
+    .signal-glow {
+      animation: none;
+    }
+  }
+</style>

@@ -1,0 +1,206 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="About — GinkgoQ" description="Learn more about GinkgoQ's deep-tech AI work and mission.">
+  <section class="about-hero container" aria-labelledby="about-heading">
+    <span class="eyebrow">About</span>
+    <h1 id="about-heading">We build practical AI for the real world.</h1>
+    <p class="about-lead">GinkgoQ is a deep-tech AI team working at the intersection of AI systems, domain intelligence, and language understanding. We focus on problems where retrieval, reasoning, and reliability actually matter.</p>
+  </section>
+
+  <section class="about-body container">
+    <div class="about-grid">
+      <div class="about-block">
+        <h2>Our approach</h2>
+        <p>We build systems that go beyond benchmark performance. Real-world AI requires extraction, validation, reasoning pipelines, and domain-specific constraints, not just a model and a retrieval layer.</p>
+        <p>We publish our thinking openly through the blog and research notes, and collaborate with teams where technical depth is needed.</p>
+      </div>
+
+      <div class="about-block">
+        <h2>Research focus</h2>
+        <ul class="focus-list">
+          <li>AI systems architecture and production infrastructure</li>
+          <li>Domain intelligence: extraction, validation, reasoning</li>
+          <li>RAG pipelines and beyond-retrieval techniques</li>
+          <li>Datasets, evaluation, and model reliability</li>
+          <li>Language understanding for specialized domains</li>
+        </ul>
+      </div>
+
+      <div class="about-block">
+        <h2>Publications</h2>
+        <p>We share what we learn through detailed technical writing. The blog covers build logs, engineering analysis, and product thinking. Research Notes covers experiments, paper observations, and system analysis.</p>
+      </div>
+
+      <div class="about-block">
+        <h2>Open to collaboration</h2>
+        <p>We work with teams that need deep AI expertise: architecture reviews, pipeline design, dataset development, and evaluation frameworks.</p>
+        <p>If you're working on a hard AI problem, we'd like to hear about it.</p>
+      </div>
+    </div>
+
+    <div class="contact-band">
+      <div>
+        <h2>Get in touch</h2>
+        <p>For collaborations, technical discussions, or questions about our work.</p>
+      </div>
+      <a href="mailto:hello@ginkgoq.ai" class="contact-link" aria-label="Email GinkgoQ">
+        hello@ginkgoq.ai
+        <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5" /></svg>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-hero {
+    padding: 96px 0 64px;
+    border-bottom: 1px solid var(--color-line);
+    transition: border-color 240ms var(--ease);
+  }
+
+  .eyebrow {
+    display: block;
+    color: var(--color-accent);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .about-hero h1 {
+    max-width: 760px;
+    margin: 1.2rem 0 2rem;
+    font-size: clamp(3rem, 5.2vw, 5.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.065em;
+  }
+
+  .about-lead {
+    max-width: 640px;
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 1.18rem;
+    line-height: 1.65;
+  }
+
+  .about-body {
+    padding: 64px 0 96px;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem 6rem;
+    margin-bottom: 4rem;
+  }
+
+  .about-block h2 {
+    margin: 0 0 1.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-line);
+    font-size: 1.45rem;
+    letter-spacing: -0.04em;
+    transition: border-color 240ms var(--ease);
+  }
+
+  .about-block p {
+    margin: 0 0 1rem;
+    color: var(--color-muted);
+    line-height: 1.7;
+  }
+
+  .about-block p:last-child {
+    margin: 0;
+  }
+
+  .focus-list {
+    display: grid;
+    gap: 0.7rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .focus-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: var(--color-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .focus-list li::before {
+    content: "";
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-top: 0.52em;
+    border-radius: 999px;
+    background: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  .contact-band {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2.75rem 3rem;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    background: radial-gradient(circle at 16% 50%, var(--color-accent-muted), transparent 40%);
+    transition: background 240ms var(--ease), border-color 240ms var(--ease);
+  }
+
+  .contact-band h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.6rem;
+    letter-spacing: -0.04em;
+  }
+
+  .contact-band p {
+    margin: 0;
+    color: var(--color-muted);
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-accent);
+    font-weight: 650;
+    font-size: 0.95rem;
+    text-decoration: none;
+    padding-bottom: 1.5px;
+    border-bottom: 1.5px solid var(--color-accent);
+    transition: gap 180ms var(--ease), opacity 140ms;
+    flex-shrink: 0;
+  }
+
+  .contact-link:hover {
+    gap: 0.68rem;
+  }
+
+  .contact-link svg {
+    transition: transform 180ms var(--ease);
+  }
+
+  .contact-link:hover svg {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 980px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .contact-band {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

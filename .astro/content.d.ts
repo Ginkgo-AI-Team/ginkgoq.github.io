@@ -139,35 +139,11 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
-"engineering": Record<string, {
-  id: string;
-  body?: string;
-  collection: "engineering";
-  data: InferEntrySchema<"engineering">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"healthcare-pharma": Record<string, {
-  id: string;
-  body?: string;
-  collection: "healthcare-pharma";
-  data: InferEntrySchema<"healthcare-pharma">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
 "research": Record<string, {
   id: string;
   body?: string;
   collection: "research";
   data: InferEntrySchema<"research">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"speechline": Record<string, {
-  id: string;
-  body?: string;
-  collection: "speechline";
-  data: InferEntrySchema<"speechline">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;

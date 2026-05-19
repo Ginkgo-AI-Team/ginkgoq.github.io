@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import "../styles/typography.css";
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 type Props = {
   title: string;
@@ -12,11 +13,11 @@ const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
@@ -28,17 +29,39 @@ const { title, description } = Astro.props;
 
     <link rel="icon" href="/favicon.svg" />
     <link rel="canonical" href={Astro.url} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <div class="page-shell">
+    <div class="reading-progress" id="reading-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Reading progress" aria-hidden="true"></div>
+    <div class="page-bg">
       <div class="card-shell">
+        <div id="scroll-sentinel" style="position:absolute;top:0;height:1px;width:1px;pointer-events:none;" aria-hidden="true"></div>
         <Header />
+        <div class="search-results-panel" id="search-results-panel" hidden>
+          <div class="search-results-inner">
+            <ul class="search-results-list" id="search-results-list" role="listbox"></ul>
+          </div>
+        </div>
         <main id="main">
           <slot />
         </main>
+        <Footer />
       </div>
     </div>
+    <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="m18 15-6-6-6 6" />
+      </svg>
+    </button>
+
+    <script src="/scripts/ui.js" defer></script>
   </body>
 </html>
 
@@ -53,6 +76,7 @@ const { title, description } = Astro.props;
     background: var(--color-text);
     color: white;
     border-radius: var(--radius-sm);
+    text-decoration: none;
   }
 
   .skip-link:focus {

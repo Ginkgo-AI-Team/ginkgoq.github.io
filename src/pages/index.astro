@@ -1,98 +1,85 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import GinkgoSignalGraphic from "../components/GinkgoSignalGraphic.astro";
-import SectionCard from "../components/SectionCard.astro";
-
-const sections = [
-  {
-    title: "Speechline",
-    description: "Persian speech datasets, ASR / STT, TTS, and evaluation tools.",
-    icon: "⌁",
-    href: "/speechline/",
-  },
-  {
-    title: "AI Systems",
-    description: "RAG, agents, backend systems, pipelines, and production infrastructure.",
-    icon: "▱",
-    href: "/engineering/",
-  },
-  {
-    title: "Intelligence from Data",
-    description: "Document understanding, vision systems, structured extraction, and more.",
-    icon: "▤",
-    href: "/blog/",
-  },
-  {
-    title: "Healthcare & Pharma AI",
-    description: "Clinical workflows, HITL systems, auditability, and decision support.",
-    icon: "□",
-    href: "/healthcare-pharma-ai/",
-  },
-];
+import SignalGridDots from "../components/SignalGridDots.astro";
 
 const posts = [
+  {
+    date: "May 4, 2026",
+    category: "Research Note",
+    title: "From RAG to Domain Intelligence",
+    description: "Moving beyond retrieval: extraction, validation, reasoning, and workflow integration.",
+    read: "7 min",
+    href: "/research-notes/from-rag-to-domain-intelligence/",
+  },
   {
     date: "May 12, 2026",
     category: "Research Note",
     title: "Why real-world AI systems need more than models",
-    description: "Thoughts on evaluation, reliability, and the gap between benchmarks and production.",
-    read: "6 min read",
-    image: "/images/posts/ai-systems.png",
+    description: "On evaluation, reliability, and the gap between benchmarks and production.",
+    read: "6 min",
+    href: "/research-notes/why-real-world-ai-systems-need-more-than-models/",
   },
   {
     date: "May 8, 2026",
-    category: "Speechline",
-    title: "Building a Persian speech AI stack",
-    description: "Our approach to datasets, annotation, and robust ASR for Persian and regional languages.",
-    read: "8 min read",
-    image: "/images/posts/speechline.png",
-  },
-  {
-    date: "May 4, 2026",
     category: "Engineering",
-    title: "From RAG to domain intelligence",
-    description: "Moving beyond retrieval: extraction, validation, reasoning, and workflow integration.",
-    read: "7 min read",
-    image: "/images/posts/rag.png",
+    title: "Building reliable AI pipelines for document understanding",
+    description: "How extraction, validation, and confidence scoring make document AI production-ready.",
+    read: "8 min",
+    href: "/blog/",
   },
 ];
 ---
 
-<BaseLayout title="GinkgoQ — Deep-tech AI for real-world systems" description="GinkgoQ builds practical AI systems across speech, healthcare, vision, documents, agents, datasets, and more.">
-  <section class="hero container">
-  <div class="hero-copy">
-    <p class="eyebrow">GINKGOQ</p>
-    <h1>Deep-tech AI for real-world systems.</h1>
-    <p class="lead">
-      We build practical AI systems across speech, healthcare, vision, documents,
-      agents, datasets, and more.
-    </p>
-    <a class="hero-link" href="/blog/">Explore our work →</a>
-  </div>
-
-  <GinkgoSignalGraphic />
-</section>
-
-  <section class="sections container" aria-label="GinkgoQ sections">
-    {sections.map((section) => <SectionCard {...section} />)}
-  </section>
-
-  <section class="latest container">
-    <div class="section-heading">
-      <h2>Latest from GinkgoQ</h2>
-      <a href="/blog/">View all posts →</a>
+<BaseLayout title="GinkgoQ — Deep-tech AI for real-world systems" description="GinkgoQ builds practical AI systems across speech, healthcare, vision, documents, agents, and production infrastructure.">
+  <section class="hero container" aria-labelledby="hero-heading">
+    <div class="hero-copy">
+      <span class="eyebrow">GINKGOQ</span>
+      <h1 id="hero-heading">Deep‑tech AI for real‑world systems.</h1>
+      <p class="lead">We publish technical writing on AI systems, domain intelligence, and practical infrastructure.</p>
+      <a class="hero-link" href="/blog/">Explore our work</a>
     </div>
 
-    <div class="post-list">
+    <div class="hero-graphic">
+      <SignalGridDots />
+    </div>
+  </section>
+
+  <section class="home-sections container" aria-label="GinkgoQ sections">
+    <a class="section-card" href="/blog/">
+      <span class="sc-num" aria-hidden="true">01</span>
+      <h3>Blog</h3>
+      <p>Technical writing on AI systems, RAG, agents, domain intelligence, and production workflows.</p>
+      <span class="sc-more">Read the blog</span>
+    </a>
+    <a class="section-card" href="/research-notes/">
+      <span class="sc-num" aria-hidden="true">02</span>
+      <h3>Research Notes</h3>
+      <p>Experiments, paper observations, and system analysis of real-world AI methods.</p>
+      <span class="sc-more">Read the notes</span>
+    </a>
+    <a class="section-card" href="/about/">
+      <span class="sc-num" aria-hidden="true">03</span>
+      <h3>About GinkgoQ</h3>
+      <p>Who we are, what we build, and how we approach deep-tech AI for the real world.</p>
+      <span class="sc-more">Learn more</span>
+    </a>
+  </section>
+
+  <section class="home-latest container" aria-labelledby="latest-heading">
+    <div class="sec-row">
+      <h2 id="latest-heading">Latest from GinkgoQ</h2>
+      <a href="/blog/">View all posts</a>
+    </div>
+
+    <div id="home-posts" role="list">
       {posts.map((post) => (
-        <article class="post-row">
-          <div>
-            <p class="post-meta">{post.date} <span>{post.category}</span></p>
+        <article class="home-post-row" role="listitem">
+          <div class="home-post-row-inner">
+            <div class="post-meta"><time>{post.date}</time><span class="cat">{post.category}</span></div>
             <h3>{post.title}</h3>
-            <p>{post.description}</p>
-            <small>{post.read}</small>
+            <p class="desc">{post.description}</p>
           </div>
-          <img src={post.image} alt="" />
+          <a class="home-post-read" href={post.href}>{post.read} read</a>
         </article>
       ))}
     </div>
@@ -102,149 +89,241 @@ const posts = [
 <style>
   .hero {
     display: grid;
-    grid-template-columns: 1fr 0.95fr;
-    gap: 4rem;
+    grid-template-columns: 1fr 0.82fr;
+    gap: 3.5rem;
     align-items: center;
-    padding: 96px 0 76px;
+    padding: 80px 0 64px;
   }
 
-  .eyebrow {
-    color: var(--color-accent);
-    font-size: 0.92rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    margin: 0 0 1.4rem;
+  .hero-graphic {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
   }
 
-  h1 {
+  .hero-copy > .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-copy > .eyebrow::before {
+    content: '';
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    background: var(--color-accent);
+    border-radius: 999px;
+    flex-shrink: 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.75rem, 4.6vw, 5.2rem);
+    line-height: 1.01;
+    letter-spacing: -0.06em;
+    max-width: 540px;
+    hyphens: none;
+    overflow-wrap: normal;
+    word-break: keep-all;
     margin: 0;
-    max-width: 560px;
-    font-size: clamp(3rem, 5.2vw, 5.9rem);
-    line-height: 0.98;
-    letter-spacing: -0.065em;
   }
 
   .lead {
-    max-width: 620px;
-    margin: 1.8rem 0 1.4rem;
-    font-size: 1.18rem;
+    max-width: 460px;
+    margin: 1.4rem 0 1.8rem;
+    font-size: 1rem;
     color: var(--color-muted);
+    line-height: 1.72;
   }
 
   .hero-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     color: var(--color-accent);
     font-weight: 700;
     text-decoration: none;
   }
 
-  .sections {
+  .home-sections {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 3.2rem;
-    padding: 38px 0;
+    grid-template-columns: repeat(3, 1fr);
     border-top: 1px solid var(--color-line);
-    border-bottom: 1px solid var(--color-line);
+    transition: border-color 240ms var(--ease);
   }
 
-  .latest {
-    padding: 54px 0 74px;
+  .section-card {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    padding: 2.2rem 1.8rem;
+    border-right: 1px solid var(--color-line);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 240ms var(--ease);
   }
 
-  .section-heading {
+  .section-card:first-child { padding-left: 0; }
+  .section-card:last-child { padding-right: 0; border-right: none; }
+
+  .section-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 280ms var(--ease);
+  }
+
+  .section-card:hover::before { transform: scaleX(1); }
+
+  .section-card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+    line-height: 1.28;
+  }
+
+  .section-card p {
+    margin: 0 0 1.2rem;
+    color: var(--color-muted);
+    font-size: 0.91rem;
+    line-height: 1.68;
+  }
+
+  .sc-num {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: var(--color-accent);
+    opacity: 0.45;
+    margin-bottom: 1rem;
+    font-variant-numeric: tabular-nums;
+    transition: opacity 200ms;
+  }
+
+  .section-card:hover .sc-num { opacity: 0.9; }
+
+  .sc-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.28rem;
+    color: var(--color-accent);
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: gap 200ms var(--ease);
+  }
+
+  .section-card:hover .sc-more { gap: 0.5rem; }
+
+  .home-latest { padding: 52px 0 68px; }
+
+  .sec-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 2rem;
+    padding-bottom: 1.25rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--color-line);
+    transition: border-color 240ms var(--ease);
   }
 
-  .section-heading h2 {
+  .sec-row h2 {
     margin: 0;
-    font-size: 1.7rem;
-    letter-spacing: -0.04em;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-subtle);
   }
 
-  .section-heading a {
+  .sec-row a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
     color: var(--color-accent);
     font-weight: 600;
-    font-size: 0.92rem;
+    font-size: 0.82rem;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .sec-row a:hover { gap: 0.55rem; }
+
+  .home-post-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 2rem;
+    padding: 1.35rem 0;
+    border-bottom: 1px solid var(--color-line);
+    transition: border-color 240ms var(--ease);
+  }
+
+  .home-post-row-inner { min-width: 0; }
+
+  .home-post-row h3 {
+    margin: 0.22rem 0 0.35rem;
+    font-size: 1.14rem;
+    letter-spacing: -0.03em;
+    line-height: 1.32;
+    transition: color 150ms;
+  }
+
+  .home-post-row:hover .home-post-row-inner h3 { color: var(--color-accent); }
+
+  .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-muted);
+    font-size: 0.84rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .post-meta .cat {
+    color: var(--color-accent);
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    font-size: 0.76rem;
+  }
+
+  .desc {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.88rem;
+    line-height: 1.62;
+    max-width: 660px;
+  }
+
+  .home-post-read {
+    color: var(--color-accent);
+    font-size: 0.74rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
     text-decoration: none;
   }
 
-  .post-list {
-    display: grid;
-    gap: 0;
-  }
-
-  .post-row {
-    display: grid;
-    grid-template-columns: 1fr 280px;
-    gap: 2rem;
-    align-items: center;
-    padding: 1.7rem 0;
-    border-top: 1px solid var(--color-line);
-  }
-
-  .post-meta {
-    margin: 0 0 0.4rem;
-    color: var(--color-muted);
-    font-size: 0.86rem;
-  }
-
-  .post-meta span {
-    margin-left: 1rem;
-    color: var(--color-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 700;
-  }
-
-  .post-row h3 {
-    margin: 0 0 0.4rem;
-    font-size: 1.32rem;
-    letter-spacing: -0.035em;
-  }
-
-  .post-row p {
-    margin: 0 0 0.5rem;
-    color: var(--color-muted);
-    max-width: 620px;
-  }
-
-  .post-row small {
-    color: var(--color-text);
-  }
-
-  .post-row img {
-    width: 100%;
-    aspect-ratio: 16 / 7.8;
-    object-fit: cover;
-    border-radius: var(--radius-sm);
-    background: #101114;
-  }
-
   @media (max-width: 980px) {
-    .hero {
-      grid-template-columns: 1fr;
-      padding-top: 64px;
-    }
-
-    .sections {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .post-row {
-      grid-template-columns: 1fr;
-    }
+    .hero { grid-template-columns: 1fr; padding-top: 64px; }
+    .home-sections { grid-template-columns: repeat(2, 1fr); }
+    .home-post-row { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 640px) {
-    .sections {
-      grid-template-columns: 1fr;
-    }
-
-    h1 {
-      font-size: 3.4rem;
-    }
+    .home-sections { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 3.4rem; }
   }
 </style>

@@ -1,41 +1,121 @@
 ---
 const links = [
-  { href: "/blog/", label: "Blog" },
-  { href: "/research-notes/", label: "Research Notes" },
-  { href: "/speechline/", label: "Speechline" },
-  { href: "/engineering/", label: "Engineering" },
-  { href: "/healthcare-pharma-ai/", label: "Healthcare & Pharma AI" },
-  { href: "/about/", label: "About" },
+  { href: "/blog/", label: "Blog", id: "blog" },
+  { href: "/research-notes/", label: "Research Notes", id: "research-notes" },
+  { href: "/about/", label: "About", id: "about" },
 ];
 ---
 
-<header class="site-header">
-  <a class="brand" href="/" aria-label="GinkgoQ home">
+<header class="site-header" id="site-header" role="banner">
+  <a class="brand" href="/" aria-label="GinkgoQ — home">
     <span class="brand-mark" aria-hidden="true">
-      <svg viewBox="0 0 32 32" role="img">
-        <path d="M25.7 5.9C17.4 5.7 9.5 10.8 6.4 18.5c5.7-2.7 11.6-3.5 17.8-2.6-5.2 1.2-9.9 3.5-14 7.2 6.7 1.6 13.2-1.7 16.4-7.7 1.8-3.4 1.7-6.8-.9-9.5Z" fill="currentColor" />
+      <svg viewBox="0 0 32 32" width="26" height="26" fill="currentColor" aria-hidden="true">
+        <path d="M25.7 5.9C17.4 5.7 9.5 10.8 6.4 18.5c5.7-2.7 11.6-3.5 17.8-2.6-5.2 1.2-9.9 3.5-14 7.2 6.7 1.6 13.2-1.7 16.4-7.7 1.8-3.4 1.7-6.8-.9-9.5Z" />
       </svg>
     </span>
     <span>GINKGOQ</span>
   </a>
 
-  <nav class="nav" aria-label="Main navigation">
-    {links.map((link) => <a href={link.href}>{link.label}</a>)}
-  </nav>
+  <div class="header-middle" role="presentation">
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      {links.map((link) => (
+        <a href={link.href} id={`nav-${link.id}`}>{link.label}</a>
+      ))}
+    </nav>
 
-  <button class="search" aria-label="Search">
-    <svg viewBox="0 0 24 24" role="img">
-      <path d="M10.8 18a7.2 7.2 0 1 1 5.1-2.1l4.1 4.1-.9.9-4.1-4.1A7.17 7.17 0 0 1 10.8 18Zm0-1.3a5.9 5.9 0 1 0 0-11.8 5.9 5.9 0 0 0 0 11.8Z" fill="currentColor" />
-    </svg>
-  </button>
+    <div class="header-search" id="header-search" role="search" aria-label="Search GinkgoQ">
+      <div class="search-inner">
+        <label for="search-input" class="sr-only">Search posts and notes</label>
+        <input
+          type="search"
+          id="search-input"
+          class="search-input"
+          placeholder="Search posts and notes…"
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
+          aria-autocomplete="list"
+          aria-controls="search-results-list"
+        />
+        <span class="search-kbd" aria-hidden="true">Esc</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-actions">
+    <button class="btn-icon btn-theme" id="btn-theme" aria-label="Switch theme" type="button">
+      <svg class="icon-sun" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="5" />
+        <line x1="12" y1="1" x2="12" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="23" />
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+        <line x1="1" y1="12" x2="3" y2="12" />
+        <line x1="21" y1="12" x2="23" y2="12" />
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      </svg>
+    </button>
+
+    <button class="search-pill" id="btn-search-open" aria-label="Search (⌘K)" aria-expanded="false" aria-controls="search-results-panel" type="button">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      </svg>
+      <span class="search-pill-label">Search</span>
+      <span class="search-kbd-hint" aria-hidden="true"><kbd>⌘</kbd><kbd>K</kbd></span>
+    </button>
+
+    <button class="btn-icon" id="btn-search-close" aria-label="Close search" hidden type="button">
+      <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+
+    <button class="btn-icon btn-hamburger" id="btn-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav" type="button">
+      <svg id="icon-hamburger" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="18" x2="21" y2="18" />
+      </svg>
+      <svg id="icon-hamburger-close" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" style="display:none;">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+  </div>
 </header>
+
+<div class="mobile-nav" id="mobile-nav" aria-hidden="true" aria-label="Mobile navigation">
+  <div class="mobile-nav-inner">
+    {links.map((link) => (
+      <a href={link.href} id={`mnav-${link.id}`}>{link.label}</a>
+    ))}
+  </div>
+</div>
 
 <style>
   .site-header {
-    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
-    gap: 2rem;
-    padding: 28px 52px;
+    padding: 0 52px;
+    height: 68px;
+    background: var(--color-surface);
+    border-bottom: 1px solid transparent;
+    transition: border-color 240ms var(--ease), box-shadow 240ms var(--ease), background-color 240ms var(--ease);
+  }
+
+  .site-header.scrolled {
+    border-bottom-color: var(--color-line);
+    box-shadow: 0 2px 14px rgb(0 0 0 / 0.06);
   }
 
   .brand {
@@ -46,58 +126,355 @@ const links = [
     font-weight: 700;
     letter-spacing: 0.14em;
     text-decoration: none;
-    margin-right: auto;
+    color: var(--color-text);
+    margin-right: 2.5rem;
+    flex-shrink: 0;
   }
 
   .brand-mark {
     width: 26px;
     height: 26px;
-    color: var(--color-text);
+    flex-shrink: 0;
   }
 
-  .nav {
+  .header-middle {
+    position: relative;
+    height: 100%;
     display: flex;
     align-items: center;
-    gap: 1.65rem;
-    font-size: 0.82rem;
-    font-weight: 560;
+    overflow: hidden;
   }
 
-  .nav a {
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    font-size: 0.82rem;
+    font-weight: 580;
+    transition: opacity 180ms var(--ease), transform 180ms var(--ease);
+  }
+
+  .site-nav a {
+    position: relative;
     text-decoration: none;
+    color: var(--color-muted);
+    padding: 0.25rem 0 3px;
+    border-bottom: none;
+    transition: color 140ms;
+  }
+
+  .site-nav a:hover {
     color: var(--color-text);
   }
 
-  .nav a:hover {
-    color: var(--color-accent);
+  .site-nav a.active {
+    color: var(--color-text);
   }
 
-  .search {
+  .site-nav a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    height: 1.5px;
+    background: var(--color-accent);
+    border-radius: 999px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 220ms var(--ease);
+  }
+
+  .site-nav a:hover::after,
+  .site-nav a.active::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .header-search {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(5px);
+    transition: opacity 180ms var(--ease), transform 180ms var(--ease);
+  }
+
+  .site-header.search-open .site-nav {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-5px);
+  }
+
+  .site-header.search-open .header-search {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .search-inner {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .search-input {
+    flex: 1;
+    height: 36px;
+    padding: 0 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--color-text);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: border-color 140ms, box-shadow 140ms, background-color 240ms var(--ease);
+  }
+
+  .search-input::placeholder {
+    color: var(--color-subtle);
+  }
+
+  .search-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-soft);
+  }
+
+  .search-kbd,
+  .search-kbd-hint {
+    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    color: var(--color-subtle);
+    background: var(--color-surface-3);
+    border: 1px solid var(--color-line);
+    border-radius: 4px;
+    padding: 0.1rem 0.4rem;
+    white-space: nowrap;
+    pointer-events: none;
+    flex-shrink: 0;
+  }
+
+  .search-results-panel {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-line);
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 280ms var(--ease), opacity 200ms var(--ease), background-color 240ms var(--ease);
+  }
+
+  .search-results-panel.open {
+    max-height: 380px;
+    opacity: 1;
+  }
+
+  .search-results-inner {
+    width: min(var(--container), calc(100% - 104px));
+    margin: 0 auto;
+    padding: 1rem 0;
+  }
+
+  .search-results-list {
+    list-style: none;
+    display: grid;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .search-no-results {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: 1.5rem;
+  }
+
+  .btn-icon {
     display: grid;
     place-items: center;
-    width: 32px;
-    height: 32px;
-    border: 0;
+    width: 36px;
+    height: 36px;
+    border: none;
     background: transparent;
-    color: var(--color-text);
-    cursor: pointer;
+    color: var(--color-muted);
+    border-radius: var(--radius-sm);
+    transition: color 140ms, background-color 140ms;
   }
 
-  .search svg {
-    width: 19px;
+  .btn-icon:hover {
+    background: var(--color-soft);
+    color: var(--color-text);
+  }
+
+  .btn-theme {
+    position: relative;
+  }
+
+  .icon-sun,
+  .icon-moon {
+    transition: opacity 0ms;
+  }
+
+  :global([data-theme="dark"]) .icon-sun {
+    display: none;
+  }
+
+  :global([data-theme="light"]) .icon-moon {
+    display: none;
+  }
+
+  .search-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    padding: 0.28rem 0.62rem 0.28rem 0.52rem;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-2);
+    color: var(--color-muted);
+    font-weight: 600;
+    font-size: 0.78rem;
+    white-space: nowrap;
+    transition: border-color 140ms, color 140ms, background-color 240ms var(--ease), box-shadow 180ms;
+  }
+
+  .search-pill:hover {
+    border-color: var(--color-accent-soft);
+    color: var(--color-text);
+    box-shadow: 0 0 0 3px var(--color-accent-muted);
+  }
+
+  .search-pill svg {
+    flex-shrink: 0;
+    opacity: 0.65;
+  }
+
+  .search-pill-label {
+    color: var(--color-subtle);
+  }
+
+  .search-kbd-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: 0.1rem;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    font-size: 0.68rem;
+    user-select: none;
+  }
+
+  .search-kbd-hint kbd {
+    padding: 0.1rem 0.32rem;
+    background: var(--color-surface-3);
+    border: 1px solid var(--color-line);
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: 1.4;
+  }
+
+  .btn-hamburger {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: none;
   }
 
   @media (max-width: 980px) {
     .site-header {
-      padding: 24px;
-      flex-wrap: wrap;
+      grid-template-columns: auto 1fr auto;
+      padding: 0 28px;
+      height: auto;
+      gap: 0.75rem;
     }
 
-    .nav {
-      order: 3;
-      width: 100%;
-      overflow-x: auto;
-      padding-bottom: 0.4rem;
+    .header-middle {
+      min-width: 0;
+    }
+
+    .site-nav {
+      display: none;
+    }
+
+    .header-search {
+      position: static;
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+      margin-top: 0.75rem;
+    }
+
+    .header-actions {
+      gap: 0.5rem;
+      margin-left: 0;
+    }
+
+    .btn-hamburger {
+      display: grid;
+    }
+
+    .mobile-nav {
+      display: block;
+      background: var(--color-surface);
+      overflow: hidden;
+      max-height: 0;
+      border-bottom: 1px solid transparent;
+      transition: max-height 280ms var(--ease), border-color 240ms var(--ease), background-color 240ms var(--ease);
+    }
+
+    .mobile-nav.open {
+      max-height: 320px;
+      border-bottom-color: var(--color-line);
+    }
+
+    .mobile-nav-inner {
+      display: flex;
+      flex-direction: column;
+      padding: 0.5rem 28px 1.25rem;
+    }
+
+    .mobile-nav a {
+      text-decoration: none;
+      color: var(--color-muted);
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--color-line);
+      font-size: 1rem;
+      font-weight: 600;
+      transition: color 140ms, border-color 240ms var(--ease);
+    }
+
+    .mobile-nav a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-nav a:hover,
+    .mobile-nav a.active-mobile {
+      color: var(--color-accent);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .site-header {
+      padding: 0 20px;
+    }
+
+    .search-pill {
+      display: none;
     }
   }
 </style>

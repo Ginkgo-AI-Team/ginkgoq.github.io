@@ -1,4 +1,5 @@
 import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
 
 const postSchema = z.object({
   title: z.string(),
@@ -11,29 +12,16 @@ const postSchema = z.object({
 });
 
 const blog = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
   schema: postSchema,
 });
 
 const research = defineCollection({
-  schema: postSchema,
-});
-
-const speechline = defineCollection({
-  schema: postSchema,
-});
-
-const engineering = defineCollection({
-  schema: postSchema,
-});
-
-const healthcarePharma = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/research" }),
   schema: postSchema,
 });
 
 export const collections = {
   blog,
   research,
-  speechline,
-  engineering,
-  "healthcare-pharma": healthcarePharma,
 };

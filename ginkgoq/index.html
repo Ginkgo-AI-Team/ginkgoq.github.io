@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GinkgoQ — Deep-tech AI for real-world systems. Technical writing on AI systems, domain intelligence, and production infrastructure.">
+  <title>GinkgoQ — Deep-tech AI for real-world systems</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Prism syntax highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+  <!-- Modular stylesheets -->
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="pages.css">
+  <link rel="stylesheet" href="prose.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="reading-progress" id="reading-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Reading progress" aria-hidden="true"></div>
+
+  <div class="page-bg">
+    <div class="card-shell">
+
+      <!-- scroll sentinel for header shadow -->
+      <div id="scroll-sentinel" style="position:absolute;top:0;height:1px;width:1px;pointer-events:none;" aria-hidden="true"></div>
+
+      <!-- ══ HEADER ══════════════════════════════════════════════════════ -->
+      <header class="site-header" id="site-header" role="banner">
+        <a class="brand" href="#home" data-page="home" aria-label="GinkgoQ — home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="26" height="26" fill="currentColor">
+              <path d="M25.7 5.9C17.4 5.7 9.5 10.8 6.4 18.5c5.7-2.7 11.6-3.5 17.8-2.6-5.2 1.2-9.9 3.5-14 7.2 6.7 1.6 13.2-1.7 16.4-7.7 1.8-3.4 1.7-6.8-.9-9.5Z"/>
+            </svg>
+          </span>
+          <span>GINKGOQ</span>
+        </a>
+
+        <div class="header-middle" role="presentation">
+          <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+            <a href="#blog"           id="nav-blog"           data-page="blog">Blog</a>
+            <a href="#research-notes" id="nav-research-notes" data-page="research-notes">Research Notes</a>
+            <a href="#about"          id="nav-about"          data-page="about">About</a>
+          </nav>
+
+          <div class="header-search" id="header-search" role="search" aria-label="Search GinkgoQ">
+            <div class="search-inner">
+              <label for="search-input" class="sr-only">Search posts and notes</label>
+              <input type="search" id="search-input" class="search-input"
+                     placeholder="Search posts and notes…"
+                     autocomplete="off" autocorrect="off" spellcheck="false"
+                     aria-autocomplete="list" aria-controls="search-results-list">
+              <span class="search-kbd" aria-hidden="true">Esc</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button class="btn-icon btn-theme" id="btn-theme" aria-label="Switch to dark mode">
+            <svg class="icon-sun" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
+
+          <!-- Search pill — all in one element so it hides cleanly -->
+          <button class="search-pill" id="btn-search-open"
+                  aria-label="Search (⌘K)" aria-expanded="false"
+                  aria-controls="search-results-panel">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <span class="search-pill-label">Search</span>
+            <span class="search-kbd-hint" aria-hidden="true"><kbd>⌘</kbd><kbd>K</kbd></span>
+          </button>
+
+          <!-- Close search (visible only while search is open) -->
+          <button class="btn-icon" id="btn-search-close" aria-label="Close search" hidden>
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+
+          <!-- Hamburger — mobile only -->
+          <button class="btn-icon btn-hamburger" id="btn-hamburger"
+                  aria-label="Open navigation" aria-expanded="false"
+                  aria-controls="mobile-nav">
+            <svg id="icon-hamburger" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <line x1="3" y1="6"  x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+            <svg id="icon-hamburger-close" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" style="display:none;">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Mobile nav panel (below header, slide-down) -->
+      <div class="mobile-nav" id="mobile-nav" aria-hidden="true" aria-label="Mobile navigation">
+        <div class="mobile-nav-inner">
+          <a href="#blog"           id="mnav-blog"           data-page="blog">Blog</a>
+          <a href="#research-notes" id="mnav-research-notes" data-page="research-notes">Research Notes</a>
+          <a href="#about"          id="mnav-about"          data-page="about">About</a>
+        </div>
+      </div>
+
+      <!-- Search results panel -->
+      <div class="search-results-panel" id="search-results-panel" aria-live="polite" hidden>
+        <div class="search-results-inner">
+          <ul class="search-results-list" id="search-results-list" role="listbox" aria-label="Search results"></ul>
+        </div>
+      </div>
+
+      <!-- ══ MAIN ════════════════════════════════════════════════════════ -->
+      <main id="main">
+
+        <!-- ── HOME ──────────────────────────────────────────────────── -->
+        <div id="page-home" class="page" data-screen-label="Home" aria-label="Home">
+          <section class="hero container" aria-labelledby="hero-heading">
+            <div class="hero-copy">
+              <span class="eyebrow">GINKGOQ</span>
+              <h1 id="hero-heading">Deep&#8209;tech AI for real&#8209;world systems.</h1>
+              <p class="lead">We publish technical writing on AI systems, domain intelligence, and practical infrastructure.</p>
+              <a class="hero-link" href="#blog" data-page="blog">
+                Explore our work
+                <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
+              </a>
+            </div>
+
+            <div class="signal-grid-dots" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 360" role="img" aria-label="Animated signal grid">
+                <defs>
+                  <radialGradient id="signalGlow" cx="50%" cy="50%" r="60%">
+                    <stop offset="0%" stop-color="var(--signal-glow)" stop-opacity="var(--signal-glow-start)"></stop>
+                    <stop offset="55%" stop-color="var(--signal-glow)" stop-opacity="var(--signal-glow-mid)"></stop>
+                    <stop offset="100%" stop-color="var(--signal-glow)" stop-opacity="0"></stop>
+                  </radialGradient>
+                  <radialGradient id="signalOrb" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="1"></stop>
+                    <stop offset="42%" stop-color="var(--signal-light)" stop-opacity="0.95"></stop>
+                    <stop offset="100%" stop-color="var(--signal-light)" stop-opacity="0"></stop>
+                  </radialGradient>
+                </defs>
+
+                <ellipse class="signal-glow" cx="256" cy="178" rx="230" ry="142"></ellipse>
+
+                <g class="signal-grid" aria-hidden="true">
+                  <path d="M 58 68 H 208"></path><path d="M 252 68 H 454"></path><path d="M 96 110 H 430"></path>
+                  <path d="M 50 152 H 188"></path><path d="M 226 152 H 486"></path><path d="M 70 194 H 314"></path>
+                  <path d="M 356 194 H 470"></path><path d="M 106 236 H 432"></path><path d="M 66 278 H 210"></path>
+                  <path d="M 248 278 H 380"></path><path d="M 96 34 V 120"></path><path d="M 96 162 V 284"></path>
+                  <path d="M 138 68 V 248"></path><path d="M 180 68 V 278"></path><path d="M 222 96 V 300"></path>
+                  <path d="M 264 66 V 244"></path><path d="M 306 88 V 318"></path><path d="M 348 50 V 250"></path>
+                  <path d="M 390 84 V 292"></path><path d="M 432 70 V 232"></path><path d="M 474 112 V 194"></path>
+                </g>
+
+                <g class="signal-fibers" aria-hidden="true">
+                  <path id="fiber-a" d="M 44 152 H 138 V 68 H 254 V 236 H 436"></path>
+                  <path id="fiber-b" d="M 102 318 V 236 H 180 V 110 H 430"></path>
+                  <path id="fiber-c" d="M 66 278 H 222 V 152 H 486"></path>
+                  <path id="fiber-d" d="M 474 194 H 306 V 68 H 58"></path>
+                  <path id="fiber-e" d="M 138 68 V 194 H 306 V 318"></path>
+                  <path id="fiber-f" d="M 36 110 H 96 V 278 H 390"></path>
+                </g>
+
+                <g class="signal-lights" aria-hidden="true">
+                  <g class="light-packet"><circle class="light-halo" r="9.75"></circle><circle class="light-core" r="2.5"></circle><animateMotion dur="6.8s" begin="-0.4s" repeatCount="indefinite" rotate="auto"><mpath href="#fiber-a"></mpath></animateMotion></g>
+                  <g class="light-packet"><circle class="light-halo" r="6.435"></circle><circle class="light-core" r="1.65"></circle><animateMotion dur="7.4s" begin="-4.8s" repeatCount="indefinite" rotate="auto"><mpath href="#fiber-a"></mpath></animateMotion></g>
+                  <g class="light-packet"><circle class="light-halo" r="8.58"></circle><circle class="light-core" r="2.2"></circle><animateMotion dur="7.2s" begin="-1.7s" repeatCount="indefinite" rotate="auto"><mpath href="#fiber-b"></mpath></animateMotion></g>
+                  <g class="light-packet"><circle class="light-halo" r="6.045"></circle><circle class="light-core" r="1.55"></circle><animateMotion dur="6.4s" begin="-5.2s" repeatCount="indefinite" rotate="auto"><mpath href="#fiber-b"></mpath></animateMotion></g>
+                  <g class="light-packet"><circle class="light-halo" r="9.555"></circle><circle class="light-core" r="2.45"></circle><animateMotion dur="6.2s" begin="-2.8s" repeatCount="indefinite" rotate="auto"><mpath href="#fiber-c"></mpath></animateMotion></g>
+                  <g class="light-packet"><circle class="light-halo" r="7.8"></circle><circle class="light-core" r="2"></circle><animateMotion dur="7.8s" begin="-3.5s" repeatCount="indefinite" rotate="auto"><mpath href="#fiber-d"></mpath></animateMotion></g>
+                  <g class="light-packet"><circle class="light-halo" r="6.825"></circle><circle class="light-core" r="1.75"></circle><animateMotion dur="6.9s" begin="-1.1s" repeatCount="indefinite" rotate="auto"><mpath href="#fiber-e"></mpath></animateMotion></g>
+                  <g class="light-packet"><circle class="light-halo" r="8.775"></circle><circle class="light-core" r="2.25"></circle><animateMotion dur="8.1s" begin="-4s" repeatCount="indefinite" rotate="auto"><mpath href="#fiber-f"></mpath></animateMotion></g>
+                </g>
+
+                <g class="signal-dots">
+                  <circle class="dot solid" cx="96" cy="68" r="2.1" style="--dot-opacity: 0.8; --delay: -0.5s"></circle>
+                  <circle class="dot hollow-circle hollow" cx="180" cy="68" r="2.8" style="--dot-opacity: 0.45; --delay: -2.2s"></circle>
+                  <circle class="dot solid" cx="306" cy="68" r="1.75" style="--dot-opacity: 0.7; --delay: -4.1s"></circle>
+                  <rect class="dot hollow-square hollow" x="427" y="107" width="6" height="6" rx="0.8" style="--dot-opacity: 0.42; --delay: -1.2s"></rect>
+                  <circle class="dot hollow-circle hollow" cx="50" cy="152" r="2.8" style="--dot-opacity: 0.36; --delay: -3.1s"></circle>
+                  <circle class="dot solid" cx="138" cy="152" r="2.05" style="--dot-opacity: 0.76; --delay: -1.6s"></circle>
+                  <circle class="dot solid" cx="180" cy="152" r="1.9" style="--dot-opacity: 0.66; --delay: -5.4s"></circle>
+                  <circle class="dot solid" cx="222" cy="152" r="1.8" style="--dot-opacity: 0.58; --delay: -3.7s"></circle>
+                  <circle class="dot solid" cx="432" cy="152" r="2" style="--dot-opacity: 0.82; --delay: -0.9s"></circle>
+                  <circle class="dot solid" cx="96" cy="194" r="2.05" style="--dot-opacity: 0.74; --delay: -4.5s"></circle>
+                  <circle class="dot solid" cx="138" cy="194" r="1.95" style="--dot-opacity: 0.82; --delay: -2.4s"></circle>
+                  <circle class="dot solid" cx="180" cy="194" r="1.8" style="--dot-opacity: 0.7; --delay: -0.2s"></circle>
+                  <rect class="dot hollow-square hollow" x="219" y="191" width="6" height="6" rx="0.8" style="--dot-opacity: 0.4; --delay: -5.9s"></rect>
+                  <circle class="dot solid" cx="486" cy="194" r="1.85" style="--dot-opacity: 0.74; --delay: -1.8s"></circle>
+                  <circle class="dot solid" cx="138" cy="236" r="1.8" style="--dot-opacity: 0.56; --delay: -3.5s"></circle>
+                  <circle class="dot solid" cx="180" cy="236" r="1.75" style="--dot-opacity: 0.58; --delay: -6.2s"></circle>
+                  <circle class="dot solid" cx="222" cy="236" r="1.75" style="--dot-opacity: 0.6; --delay: -2.6s"></circle>
+                  <circle class="dot hollow-circle hollow" cx="96" cy="278" r="2.75" style="--dot-opacity: 0.36; --delay: -0.8s"></circle>
+                  <circle class="dot hollow-circle hollow" cx="180" cy="278" r="2.75" style="--dot-opacity: 0.38; --delay: -4.9s"></circle>
+                  <circle class="dot solid" cx="222" cy="278" r="1.9" style="--dot-opacity: 0.64; --delay: -1.4s"></circle>
+                  <circle class="dot solid" cx="264" cy="278" r="2.05" style="--dot-opacity: 0.78; --delay: -3.9s"></circle>
+                  <circle class="dot hollow-circle hollow" cx="348" cy="278" r="2.85" style="--dot-opacity: 0.36; --delay: -2s"></circle>
+                  <circle class="dot solid" cx="222" cy="320" r="2.05" style="--dot-opacity: 0.86; --delay: -5.1s"></circle>
+                </g>
+              </svg>
+            </div>
+          </section>
+
+          <section class="home-sections container" aria-label="GinkgoQ sections">
+            <a class="section-card" href="#blog" data-page="blog">
+              <span class="sc-num" aria-hidden="true">01</span>
+              <h3>Blog</h3>
+              <p>Technical writing on AI systems, RAG, agents, domain intelligence, and production workflows.</p>
+              <span class="sc-more" aria-hidden="true">Read the blog
+                <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
+              </span>
+            </a>
+            <a class="section-card" href="#research-notes" data-page="research-notes">
+              <span class="sc-num" aria-hidden="true">02</span>
+              <h3>Research Notes</h3>
+              <p>Experiments, paper observations, and system analysis of real-world AI methods.</p>
+              <span class="sc-more" aria-hidden="true">Read the notes
+                <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
+              </span>
+            </a>
+            <a class="section-card" href="#about" data-page="about">
+              <span class="sc-num" aria-hidden="true">03</span>
+              <h3>About GinkgoQ</h3>
+              <p>Who we are, what we build, and how we approach deep-tech AI for the real world.</p>
+              <span class="sc-more" aria-hidden="true">Learn more
+                <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
+              </span>
+            </a>
+          </section>
+
+          <section class="home-latest container" aria-labelledby="latest-heading">
+            <div class="sec-row">
+              <h2 id="latest-heading">Latest from GinkgoQ</h2>
+              <a href="#blog" data-page="blog">
+                View all posts
+                <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
+              </a>
+            </div>
+            <div id="home-posts" role="list"></div>
+          </section>
+        </div>
+
+        <!-- ── BLOG ──────────────────────────────────────────────────── -->
+        <div id="page-blog" class="page" data-screen-label="Blog" aria-label="Blog">
+          <section class="blog-hero container" aria-labelledby="blog-heading">
+            <div>
+              <span class="eyebrow">Blog</span>
+              <h1 id="blog-heading">Technical writing for real-world AI.</h1>
+              <p class="lead">Notes, build logs, product thinking, and engineering analysis from GinkgoQ.</p>
+            </div>
+            <div class="hero-panel">
+              <p>Focus areas</p>
+              <ul>
+                <li>AI Systems &amp; Agents</li>
+                <li>Domain Intelligence</li>
+                <li>RAG &amp; Pipelines</li>
+                <li>Datasets &amp; Models</li>
+                <li>Production Infrastructure</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="blog-section container">
+            <div class="section-divider">
+              <div><p class="kicker">Latest</p><h2>Featured post</h2></div>
+            </div>
+            <a class="featured-card" href="#article-rag" data-page="article-rag">
+              <div class="featured-copy">
+                <div class="post-meta"><time>May 4, 2026</time><span class="cat">Research Note</span></div>
+                <h3>From RAG to Domain Intelligence</h3>
+                <p>Moving beyond retrieval: extraction, validation, reasoning, and workflow integration.</p>
+                <div class="post-footer">
+                  <span class="read-more">Read article →</span>
+                  <ul class="tag-list">
+                    <li class="tag-pill">AI Systems</li>
+                    <li class="tag-pill">RAG</li>
+                    <li class="tag-pill">Domain Intelligence</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="featured-visual" aria-hidden="true"></div>
+            </a>
+          </section>
+
+          <section class="blog-section container">
+            <div class="section-divider">
+              <div><p class="kicker">Archive</p><h2>All posts</h2></div>
+              <p class="count">3 posts</p>
+            </div>
+            <div class="blog-content-grid">
+              <div class="posts-list" id="blog-posts" role="list"></div>
+              <aside class="blog-sidebar" aria-label="Blog filters">
+                <section class="sidebar-block">
+                  <h2>Categories</h2>
+                  <ul>
+                    <li><a href="#">Research Note</a></li>
+                    <li><a href="#">Engineering</a></li>
+                  </ul>
+                </section>
+                <section class="sidebar-block">
+                  <h2>Topics</h2>
+                  <div class="tag-cloud">
+                    <a href="#">AI Systems</a><a href="#">RAG</a><a href="#">Agents</a>
+                    <a href="#">Domain Intelligence</a><a href="#">Datasets</a><a href="#">Production</a>
+                  </div>
+                </section>
+                <section class="sidebar-block note">
+                  <h2>About this blog</h2>
+                  <p>Practical notes on AI systems, domain intelligence, datasets, models, and production workflows.</p>
+                </section>
+              </aside>
+            </div>
+          </section>
+        </div>
+
+        <!-- ── RESEARCH NOTES ─────────────────────────────────────────── -->
+        <div id="page-research-notes" class="page" data-screen-label="Research Notes" aria-label="Research Notes">
+          <section class="rn-listing container" aria-labelledby="rn-heading">
+            <span class="eyebrow">Research Notes</span>
+            <h1 id="rn-heading">Research Notes</h1>
+            <p class="rn-desc">Technical notes, paper observations, experiments, and AI system analysis.</p>
+            <div class="rn-items" id="rn-items" role="list"></div>
+          </section>
+        </div>
+
+        <!-- ── ABOUT ──────────────────────────────────────────────────── -->
+        <div id="page-about" class="page" data-screen-label="About" aria-label="About GinkgoQ">
+          <section class="about-hero container" aria-labelledby="about-heading">
+            <span class="eyebrow">About</span>
+            <h1 id="about-heading">We build practical AI for the real world.</h1>
+            <p class="about-lead">GinkgoQ is a deep-tech AI team working at the intersection of AI systems, domain intelligence, and language understanding. We focus on problems where retrieval, reasoning, and reliability actually matter.</p>
+          </section>
+
+          <section class="about-body container">
+            <div class="about-grid">
+              <div class="about-block">
+                <h2>Our approach</h2>
+                <p>We build systems that go beyond benchmark performance. Real-world AI requires extraction, validation, reasoning pipelines, and domain-specific constraints — not just a model and a retrieval layer.</p>
+                <p>We publish our thinking openly through the blog and research notes, and collaborate with teams where technical depth is needed.</p>
+              </div>
+              <div class="about-block">
+                <h2>Research focus</h2>
+                <ul class="focus-list">
+                  <li>AI systems architecture and production infrastructure</li>
+                  <li>Domain intelligence: extraction, validation, reasoning</li>
+                  <li>RAG pipelines and beyond-retrieval techniques</li>
+                  <li>Datasets, evaluation, and model reliability</li>
+                  <li>Language understanding for specialized domains</li>
+                </ul>
+              </div>
+              <div class="about-block">
+                <h2>Publications</h2>
+                <p>We share what we learn through detailed technical writing. The blog covers build logs, engineering analysis, and product thinking. Research Notes covers experiments, paper observations, and system analysis.</p>
+              </div>
+              <div class="about-block">
+                <h2>Open to collaboration</h2>
+                <p>We work with teams that need deep AI expertise — architecture reviews, pipeline design, dataset development, and evaluation frameworks.</p>
+                <p>If you're working on a hard AI problem, we'd like to hear about it.</p>
+              </div>
+            </div>
+            <div class="contact-band">
+              <div>
+                <h2>Get in touch</h2>
+                <p>For collaborations, technical discussions, or questions about our work.</p>
+              </div>
+              <a href="mailto:hello@ginkgoq.ai" class="contact-link" aria-label="Email GinkgoQ">
+                hello@ginkgoq.ai
+                <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
+              </a>
+            </div>
+          </section>
+        </div>
+
+        <!-- ── ARTICLE: RAG to Domain Intelligence ────────────────────── -->
+        <div id="page-article-rag" class="page" data-screen-label="Article" aria-label="Article">
+          <div class="article-page container">
+            <article aria-labelledby="article-heading">
+              <a class="back-link" href="#research-notes" data-page="research-notes">
+                <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M13 8H3M8 3L3 8l5 5"/></svg>
+                Research Notes
+              </a>
+
+              <div class="article-header">
+                <span class="eyebrow">Research Note</span>
+                <h1 id="article-heading">From RAG to Domain Intelligence</h1>
+                <p class="dek">RAG is not the product. It is the retrieval layer. Real-world AI systems need extraction, validation, reasoning, auditability, and workflow integration.</p>
+                <div class="article-meta">
+                  <time>May 4, 2026</time>
+                  <span>7 min read</span>
+                  <span class="tag-pill">AI Systems</span>
+                  <span class="tag-pill">RAG</span>
+                </div>
+              </div>
+
+              <div class="prose">
+                <h2 id="limitation">The limitation of RAG</h2>
+                <p>Retrieval-Augmented Generation has become the default architecture for many AI applications. It improves factuality and reduces hallucination, but it is still only a retrieval layer.</p>
+
+                <blockquote>
+                  <p>RAG finds information. It does not understand it. It does not validate it. It does not act on it.</p>
+                </blockquote>
+
+                <p>In production, the gap between "the model returned a document" and "the system produced a reliable, actionable output" is where most AI projects struggle. That gap is domain intelligence.</p>
+
+                <h2 id="beyond-retrieval">Beyond retrieval</h2>
+                <p>Real-world systems need more than retrieving documents. They need a pipeline that turns unstructured information into reliable, actionable intelligence.</p>
+
+                <div class="pipeline">
+                  <span>Ingestion</span><span class="arrow">→</span>
+                  <span>Retrieval</span><span class="arrow">→</span>
+                  <span>Extraction</span><span class="arrow">→</span>
+                  <span>Validation</span><span class="arrow">→</span>
+                  <span>Reasoning</span><span class="arrow">→</span>
+                  <span>Action</span>
+                </div>
+
+                <p>Each step adds a layer of understanding, quality, and context. Here is a minimal Python skeleton of such a pipeline:</p>
+
+                <div class="code-block">
+                  <div class="code-block-header">
+                    <span class="code-lang">python</span>
+                    <button class="copy-btn" aria-label="Copy code">Copy</button>
+                  </div>
+                  <pre><code class="language-python">from dataclasses import dataclass
+from typing import Optional
+
+@dataclass
+class IntelligenceResult:
+    content: str
+    confidence: float
+    provenance: list[str]
+    validated: bool
+
+class DomainPipeline:
+    """
+    Turns raw retrieval results into validated, decision-ready intelligence.
+    """
+
+    def __init__(self, retriever, extractor, validator):
+        self.retriever = retriever
+        self.extractor = extractor
+        self.validator = validator
+
+    def run(self, query: str) -> Optional[IntelligenceResult]:
+        # 1. Retrieve relevant chunks
+        docs = self.retriever.search(query, k=8)
+        if not docs:
+            return None
+
+        # 2. Extract structured information
+        extracted = self.extractor.extract(query, docs)
+
+        # 3. Validate against domain constraints
+        is_valid, reasons = self.validator.check(extracted)
+
+        # 4. Score confidence from validation signals
+        confidence = self.validator.score(extracted, reasons)
+
+        return IntelligenceResult(
+            content    = extracted.summary,
+            confidence = confidence,
+            provenance = [d.source for d in docs],
+            validated  = is_valid,
+        )</code></pre>
+                </div>
+
+                <h2 id="domain-layer">Domain intelligence layer</h2>
+                <p>The domain intelligence layer sits on top of retrieval and turns raw information into decision-ready knowledge. The key components are:</p>
+
+                <ul>
+                  <li>Entity and event extraction</li>
+                  <li>Normalization and canonicalization</li>
+                  <li>Consistency checks and validation</li>
+                  <li>Business rules and domain constraints</li>
+                  <li>Confidence scoring and provenance</li>
+                </ul>
+
+                <p>Wiring these together with a reliable validation step is what separates a prototype from a production system.</p>
+
+                <div class="code-block">
+                  <div class="code-block-header">
+                    <span class="code-lang">python</span>
+                    <button class="copy-btn" aria-label="Copy code">Copy</button>
+                  </div>
+                  <pre><code class="language-python">class DomainValidator:
+    """Validates extracted information against domain constraints."""
+
+    def __init__(self, rules: list):
+        self.rules = rules  # list of callable constraint functions
+
+    def check(self, result) -> tuple[bool, list[str]]:
+        reasons = []
+        for rule in self.rules:
+            ok, reason = rule(result)
+            if not ok:
+                reasons.append(reason)
+        return len(reasons) == 0, reasons
+
+    def score(self, result, violations: list[str]) -> float:
+        """Confidence decreases with each validation violation."""
+        base   = result.extraction_confidence or 0.8
+        penalty = len(violations) * 0.15
+        return max(0.0, round(base - penalty, 3))</code></pre>
+                </div>
+
+                <p>This is what makes AI systems reliable in production: not the model, but the pipeline around it.</p>
+
+                <div class="article-end" aria-hidden="true"><span>· · ·</span></div>
+
+                <div class="article-actions">
+                  <button class="share-btn" id="share-btn" aria-label="Share this article">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                    Share this note
+                  </button>
+                  <a class="back-link" href="#research-notes" data-page="research-notes">
+                    <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M13 8H3M8 3L3 8l5 5"/></svg>
+                    Back to Research Notes
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <aside class="toc" aria-label="Table of contents">
+              <h2>On this page</h2>
+              <ol>
+                <li><a href="#limitation">The limitation of RAG</a></li>
+                <li><a href="#beyond-retrieval">Beyond retrieval</a></li>
+                <li><a href="#domain-layer">Domain intelligence layer</a></li>
+              </ol>
+            </aside>
+          </div>
+        </div>
+
+      </main>
+
+      <!-- ══ FOOTER ══════════════════════════════════════════════════════ -->
+      <footer class="site-footer" role="contentinfo" aria-label="Site footer">
+        <div class="container">
+          <div class="footer-inner">
+
+            <!-- Brand column -->
+            <div class="footer-brand">
+              <a class="footer-brand-link" href="#home" data-page="home" aria-label="GinkgoQ home">
+                <span class="brand-mark" aria-hidden="true">
+                  <svg viewBox="0 0 32 32" width="22" height="22" fill="currentColor">
+                    <path d="M25.7 5.9C17.4 5.7 9.5 10.8 6.4 18.5c5.7-2.7 11.6-3.5 17.8-2.6-5.2 1.2-9.9 3.5-14 7.2 6.7 1.6 13.2-1.7 16.4-7.7 1.8-3.4 1.7-6.8-.9-9.5Z"/>
+                  </svg>
+                </span>
+                <span>GINKGOQ</span>
+              </a>
+              <p class="footer-brand-desc">Deep-tech AI for real-world systems. Technical writing on AI systems, domain intelligence, and practical AI infrastructure.</p>
+              <div class="footer-social" aria-label="Social links">
+                <a class="footer-social-link" href="https://github.com/Ginkgo-AI-Team" target="_blank" rel="noopener" aria-label="GitHub">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z"/></svg>
+                </a>
+                <a class="footer-social-link" href="https://twitter.com/ginkgoai" target="_blank" rel="noopener" aria-label="X / Twitter">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a class="footer-social-link" href="mailto:hello@ginkgoq.ai" aria-label="Email">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Navigation column -->
+            <div class="footer-col">
+              <span class="footer-col-heading">Navigate</span>
+              <ul class="footer-nav-list">
+                <li><a href="#blog"           data-page="blog">Blog</a></li>
+                <li><a href="#research-notes" data-page="research-notes">Research Notes</a></li>
+                <li><a href="#about"          data-page="about">About</a></li>
+                <li><a href="mailto:hello@ginkgoq.ai">Contact</a></li>
+              </ul>
+            </div>
+
+            <!-- Topics column -->
+            <div class="footer-col">
+              <span class="footer-col-heading">Topics</span>
+              <div class="footer-tag-cloud">
+                <a href="#">AI Systems</a>
+                <a href="#">Domain Intelligence</a>
+                <a href="#">RAG</a>
+                <a href="#">Agents</a>
+                <a href="#">Pipelines</a>
+                <a href="#">Datasets</a>
+                <a href="#">Production</a>
+                <a href="#">Evaluation</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom bar -->
+          <div class="footer-bottom">
+            <div class="footer-bottom-inner">
+              <span>© 2026 GinkgoQ. All rights reserved.</span>
+              <div class="footer-bottom-right">
+                <a href="mailto:hello@ginkgoq.ai">hello@ginkgoq.ai</a>
+                <span class="footer-sep" aria-hidden="true">·</span>
+                <span>Deep-tech AI for real-world systems</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div><!-- end card-shell -->
+  </div><!-- end page-bg -->
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
+  <!-- Prism language components -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js" defer></script>
+
+  <!-- App modules -->
+  <script src="ginkgo.js" defer></script>
+  <script src="ui.js" defer></script>
+
+  <!-- Show/hide search close button in sync with header state -->
+  <script>
+    (function() {
+      var open     = document.getElementById('btn-search-open');
+      var close    = document.getElementById('btn-search-close');
+      var hdr      = document.getElementById('site-header');
+      var mobileNav= document.getElementById('mobile-nav');
+      if (!open || !close || !hdr) return;
+      var obs = new MutationObserver(function() {
+        var isOpen = hdr.classList.contains('search-open');
+        open.hidden  = isOpen;
+        close.hidden = !isOpen;
+        open.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        // close mobile nav when search opens
+        if (isOpen && mobileNav) {
+          mobileNav.classList.remove('open');
+          mobileNav.setAttribute('aria-hidden', 'true');
+          var ham = document.getElementById('btn-hamburger');
+          if (ham) {
+            ham.setAttribute('aria-expanded', 'false');
+            document.getElementById('icon-hamburger').style.display = '';
+            document.getElementById('icon-hamburger-close').style.display = 'none';
+          }
+        }
+      });
+      obs.observe(hdr, { attributes: true, attributeFilter: ['class'] });
+    })();
+  </script>
+</body>
+</html>
