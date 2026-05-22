@@ -38,7 +38,6 @@
 
   function setActiveNavigation() {
     const current = normalizePath(window.location.pathname);
-
     document.querySelectorAll('.site-nav a, .mobile-nav a').forEach((link) => {
       const linkPath = normalizePath(new URL(link.href, window.location.origin).pathname);
       const isHomeLink = linkPath === '/';
@@ -46,8 +45,20 @@
         ? current === '/'
         : current === linkPath || current.startsWith(`${linkPath}/`);
 
-      link.classList.toggle('active', isMatch && link.closest('.site-nav'));
-      link.classList.toggle('active-mobile', isMatch && link.closest('.mobile-nav'));
+      const inDesktop = !!link.closest('.site-nav');
+      const inMobile = !!link.closest('.mobile-nav');
+
+      link.classList.toggle('active', isMatch && inDesktop);
+      link.classList.toggle('active-mobile', isMatch && inMobile);
+
+      if (isMatch && inDesktop) {
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+      if (isMatch && inMobile) {
+        link.setAttribute('aria-current', 'page');
+      }
     });
   }
 

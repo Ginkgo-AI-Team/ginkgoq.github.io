@@ -139,14 +139,13 @@ const allTags = Array.from(
                       </div>
 
                       <div class="post-thumb" aria-hidden="true">
-                        {post.data.image ? (
-                          <img src={post.data.image} alt="" />
-                        ) : (
-                          <div class="thumb-placeholder">
-                            <span></span>
-                            <span></span>
-                          </div>
-                        )}
+                        {
+                          (post.data.image && (
+                            <img src={post.data.image} alt="" />
+                          )) || (
+                            <img src={siteConfig.categories[post.data.category] ?? '/images/og-default.png'} alt="" />
+                          )
+                        }
                       </div>
                     </a>
                   </article>

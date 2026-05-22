@@ -93,6 +93,17 @@ export const siteConfig = {
     buttonText: "Search",
   },
 
+  categories: {
+    "AI Systems": "/images/categories/ai-systems.png",
+    "Domain Intelligence": "/images/categories/domain-intelligence.png",
+    RAG: "/images/categories/rag.png",
+    Agents: "/images/categories/agents.png",
+    Pipelines: "/images/categories/pipelines.png",
+    Datasets: "/images/categories/datasets.png",
+    Production: "/images/categories/production.png",
+    Evaluation: "/images/categories/evaluation.png",
+  },
+
   pages: {
     home: {
       title: "GinkgoQ — Deep-tech AI for real-world systems",
