@@ -21,18 +21,20 @@ import { siteConfig } from "../config/site.config";
     <div class="header-search" id="header-search" role="search" aria-label="Search GinkgoQ">
       <div class="search-inner">
         <label for="search-input" class="sr-only">Search posts and notes</label>
-        <input
-          type="search"
-          id="search-input"
-          class="search-input"
-          placeholder={siteConfig.search.placeholder}
-          autocomplete="off"
-          autocorrect="off"
-          spellcheck="false"
-          aria-autocomplete="list"
-          aria-controls="search-results-list"
-        />
-        <span class="search-kbd" aria-hidden="true">Esc</span>
+        <div class="search-field">
+          <input
+            type="search"
+            id="search-input"
+            class="search-input"
+            placeholder={siteConfig.search.placeholder}
+            autocomplete="off"
+            autocorrect="off"
+            spellcheck="false"
+            aria-autocomplete="list"
+            aria-controls="search-results-list"
+          />
+          <button class="search-close-hint" id="btn-search-close" aria-label="Close search" hidden type="button">Esc</button>
+        </div>
       </div>
     </div>
   </div>
@@ -64,12 +66,13 @@ import { siteConfig } from "../config/site.config";
       <span class="search-kbd-hint" aria-hidden="true"><kbd>⌘</kbd><kbd>K</kbd></span>
     </button>
 
-    <button class="btn-icon" id="btn-search-close" aria-label="Close search" hidden type="button">
-      <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
-        <line x1="18" y1="6" x2="6" y2="18" />
-        <line x1="6" y1="6" x2="18" y2="18" />
+    <a class="btn-icon" href="/rss.xml" aria-label="Subscribe via RSS" title="Subscribe via RSS">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4.5 19.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" />
+        <path d="M4.5 12.75c5.623 0 10.185 4.562 10.185 10.185" />
+        <path d="M4.5 6c8.284 0 15 6.716 15 15" />
       </svg>
-    </button>
+    </a>
 
     <button class="btn-icon btn-hamburger" id="btn-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav" type="button">
       <svg id="icon-hamburger" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -228,74 +231,125 @@ import { siteConfig } from "../config/site.config";
     gap: 0.75rem;
   }
 
+  .search-field {
+    position: relative;
+    width: 100%;
+  }
+
   .search-input {
-    flex: 1;
-    height: 36px;
-    padding: 0 0.75rem;
+    width: 100%;
+    min-width: 0;
+    height: 48px;
+    padding: 0 5.5rem 0 1rem;
     font-family: var(--font-sans);
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--color-text);
     background: var(--color-surface-2);
     border: 1px solid var(--color-line);
-    border-radius: var(--radius-sm);
+    border-radius: calc(var(--radius-lg) + 2px);
     outline: none;
     transition: border-color 140ms, box-shadow 140ms, background-color 240ms var(--ease);
+    box-sizing: border-box;
   }
 
   .search-input::placeholder {
     color: var(--color-subtle);
+    font-size: 1rem;
   }
 
   .search-input:focus {
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px var(--color-accent-soft);
+    box-shadow: 0 0 0 4px var(--color-accent-soft);
   }
 
   .search-kbd,
   .search-kbd-hint {
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-family: var(--font-mono);
     color: var(--color-subtle);
     background: var(--color-surface-3);
     border: 1px solid var(--color-line);
-    border-radius: 4px;
-    padding: 0.1rem 0.4rem;
+    border-radius: 6px;
+    padding: 0.17rem 0.44rem;
     white-space: nowrap;
     pointer-events: none;
     flex-shrink: 0;
   }
+  .search-close-hint {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 64px;
+    height: 36px;
+    padding: 0 0.75rem;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    color: var(--color-subtle);
+    background: var(--color-surface-3);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 140ms, border-color 140ms, color 140ms, transform 140ms;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
 
-  .search-results-panel {
+  .search-close-hint:hover {
     background: var(--color-surface);
-    border-top: 1px solid var(--color-line);
+    border-color: var(--color-accent-soft);
+    color: var(--color-text);
+    transform: translateY(-50%) scale(1.02);
+  }
+  :global(.search-results-panel) {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-top: none;
+    border-bottom-left-radius: var(--radius-lg);
+    border-bottom-right-radius: var(--radius-lg);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.08);
     overflow: hidden;
     max-height: 0;
     opacity: 0;
-    transition: max-height 280ms var(--ease), opacity 200ms var(--ease), background-color 240ms var(--ease);
+    transform: translateY(-6px);
+    transition: max-height 280ms var(--ease), opacity 200ms var(--ease), transform 200ms var(--ease), background-color 240ms var(--ease);
   }
 
-  .search-results-panel.open {
-    max-height: 380px;
+  :global(.search-results-panel.open) {
+    max-height: 540px;
     opacity: 1;
+    transform: translateY(0);
   }
 
-  .search-results-inner {
+  :global(.search-results-inner) {
     width: min(var(--container), calc(100% - 104px));
     margin: 0 auto;
-    padding: 1rem 0;
+    padding: 0.9rem 1rem 1.2rem;
   }
 
-  .search-results-list {
-    list-style: none;
+  :global(.search-results-list) {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
     display: grid;
-    gap: 2px;
+    gap: 4px;
+  }
+
+  :global(.search-results-list > li) {
+    list-style: none !important;
     margin: 0;
     padding: 0;
   }
 
-  .search-no-results {
-    padding: 0.75rem;
-    font-size: 0.9rem;
+  :global(.search-results-list > li::marker) {
+    display: none;
+  }
+
+  :global(.search-no-results) {
+    padding: 1rem 1rem 1.1rem;
+    font-size: 0.95rem;
     color: var(--color-muted);
   }
 

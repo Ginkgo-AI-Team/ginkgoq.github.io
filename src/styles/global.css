@@ -199,6 +199,41 @@ img, svg {
   background: var(--color-accent-soft);
 }
 
+.search-empty-state {
+  padding: 1.1rem 0.85rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-2);
+  color: var(--color-muted);
+}
+
+.search-empty-title {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.search-empty-copy {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.75;
+}
+
+.search-results-list,
+.search-results-list li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.search-results-list > li::marker {
+  display: none !important;
+}
+
+.search-results-inner {
+  padding: 0.9rem 1rem 1.2rem;
+}
+
 .sr-cat {
   grid-row: 1;
   align-self: center;

@@ -85,19 +85,40 @@
   function renderResults(queryValue) {
     if (!resultsList) return;
     const query = queryValue.trim().toLowerCase();
-    const items = query
+    const hasQuery = query.length >= 2;
+    const items = hasQuery
       ? POSTS.filter((post) =>
           post.title.toLowerCase().includes(query) ||
           post.description.toLowerCase().includes(query) ||
           post.category.toLowerCase().includes(query)
         )
-      : POSTS;
+      : [];
 
     resultsList.innerHTML = '';
     focusedIdx = -1;
 
+    if (!query.length) {
+      resultsList.innerHTML = `
+        <li class="search-empty-state">
+          <p class="search-empty-title">Search posts and notes</p>
+          <p class="search-empty-copy">Start typing to find articles, research notes, and AI system writing.</p>
+        </li>
+      `;
+      return;
+    }
+
+    if (!hasQuery) {
+      resultsList.innerHTML = `
+        <li class="search-empty-state">
+          <p class="search-empty-title">Keep typing</p>
+          <p class="search-empty-copy">Enter at least 2 characters to search the site effectively.</p>
+        </li>
+      `;
+      return;
+    }
+
     if (!items.length) {
-      resultsList.innerHTML = '<li class="search-no-results">No results found.</li>';
+      resultsList.innerHTML = '<li class="search-no-results">No results found. Try a broader keyword or simplify your query.</li>';
       return;
     }
 
@@ -107,7 +128,7 @@
       li.setAttribute('role', 'option');
       li.id = `sr-${index}`;
       li.innerHTML = `
-        <a href="${post.href}" tabindex="-1">
+        <a href="${post.href}" tabindex="-1" aria-label="${post.title}. ${post.category}. ${post.description}">
           <span class="sr-cat">${post.category}</span>
           <span class="sr-title">${post.title}</span>
           <span class="sr-desc">${post.description}</span>

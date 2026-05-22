@@ -1,43 +1,45 @@
-# Astro Starter Kit: Minimal
+# GinkgoQ Website
+
+GinkgoQ is a static content site built with Astro. It publishes blog posts and research notes on AI systems, retrieval-augmented systems, domain intelligence, and production-ready AI infrastructure.
+
+## What this repo contains
+
+- `src/pages/` — page routes and content templates
+- `src/components/` — shared UI components such as header, footer, and search
+- `src/layouts/` — page layout components and metadata
+- `src/styles/` — global site styles and typography
+- `public/` — static assets and client-side scripts
+- `src/pages/rss.xml.ts` — RSS feed generation for content syndication
+
+## Key features
+
+- client-side, site-wide search with keyboard shortcut support (`⌘K` / `/`)
+- accessible navigation and mobile menu handling
+- visible RSS feed link in the header and footer
+- dark/light theme toggle persisted across sessions
+- SEO-friendly metadata and structured JSON-LD
+
+## Run locally
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Visit the local dev server and confirm the site loads correctly.
 
-## 🚀 Project Structure
+## Build
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+npm run build
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Notes
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- The site uses content collections for `blog` and `research` posts.
+- Search is implemented using a lightweight client-side index rendered from `BaseLayout.astro`.
+- The RSS feed is available at `/rss.xml`.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Recommended GitHub topics
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+`astro`, `static-site`, `rss`, `search`, `ai`, `domain-intelligence`, `research-notes`, `production-ml`
