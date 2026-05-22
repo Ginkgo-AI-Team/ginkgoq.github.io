@@ -43,7 +43,7 @@ const socialSvg = (type: string) => {
       <div class="footer-brand">
         <a class="footer-brand-link" href={siteConfig.routes.home} aria-label={`${siteConfig.brand.name} home`}>
           <span class="brand-mark" aria-hidden="true">
-            <img src={siteConfig.brand.logoPath}>
+            <img class="brand-logo" src={siteConfig.brand.logoPath} alt={siteConfig.brand.logoAlt} />
           </span>
           <span>{siteConfig.brand.label}</span>
         </a>
@@ -115,6 +115,17 @@ const socialSvg = (type: string) => {
   .footer-brand-link .brand-mark {
     width: 22px;
     height: 22px;
+  }
+
+  .footer-brand-link .brand-mark img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transition: filter 180ms ease;
+  }
+
+  :global([data-theme="dark"]) .footer-brand-link .brand-mark img {
+    filter: invert(1) brightness(1.1);
   }
 
   .footer-brand-desc {

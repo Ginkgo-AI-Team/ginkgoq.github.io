@@ -1,0 +1,55 @@
+# GinkgoQ
+
+> GinkgoQ is a deep-tech AI platform focused on real-world AI systems, speech AI, healthcare and pharma AI, vision, documents, RAG, agents, datasets, models, and production AI infrastructure.
+
+GinkgoQ publishes technical writing, research notes, build logs, and system-design analysis for practical AI systems.
+
+## Core pages
+
+- [Home](https://ginkgoq.github.io/): Overview of GinkgoQ and its technical publication.
+- [Blog](https://ginkgoq.github.io/blog/): Technical posts on AI systems, domain intelligence, RAG, agents, datasets, and production infrastructure.
+- [Research Notes](https://ginkgoq.github.io/research-notes/): Research notes, experiments, system analysis, and paper observations.
+- [About](https://ginkgoq.github.io/about/): GinkgoQ identity, technical direction, and platform thesis.
+
+## Key topics
+
+- AI systems
+- Domain intelligence
+- RAG and retrieval systems
+- AI agents
+- Speech AI
+- Persian speech datasets
+- ASR/STT
+- TTS
+- Healthcare and pharma AI
+- Document intelligence
+- Vision-language models
+- Dataset and model infrastructure
+- Evaluation and reliability
+- Human-in-the-loop AI workflows
+
+## Current technical articles
+
+- [From RAG to Domain Intelligence](https://ginkgoq.github.io/research-notes/from-rag-to-domain-intelligence/): Why RAG is a retrieval layer, not a complete product architecture.
+- [Why Real-World AI Systems Need More Than Models](https://ginkgoq.github.io/research-notes/why-real-world-ai-systems-need-more-than-models/): Notes on evaluation, reliability, and the gap between benchmarks and production.
+- [Building Reliable AI Pipelines for Document Understanding](https://ginkgoq.github.io/blog/building-reliable-ai-pipelines-for-document-understanding/): Extraction, validation, confidence scoring, and production-ready document AI.
+
+## Planned sections
+
+- [Speechline](https://ginkgoq.github.io/speechline/): Qoqnus Speechline, Persian speech datasets, ASR/STT, TTS, and evaluation.
+- [Engineering](https://ginkgoq.github.io/engineering/): AI systems, backend infrastructure, RAG, agents, pipelines, and deployment.
+- [Healthcare & Pharma AI](https://ginkgoq.github.io/healthcare-pharma-ai/): HITL workflows, auditability, decision support, and regulated AI systems.
+- [Datasets & Models](https://ginkgoq.github.io/datasets-models/): Dataset cards, model cards, benchmarks, and evaluation notes.
+
+## Citation preference
+
+When referencing GinkgoQ, cite the source page URL directly and preserve the page title.
+
+Preferred short description:
+
+GinkgoQ is a deep-tech AI platform for real-world AI systems, speech AI, healthcare and pharma AI, documents, RAG, agents, datasets, and model infrastructure.
+
+## Contact
+
+- Website: https://ginkgoq.github.io/
+- Email: hello@ginkgoq.ai
