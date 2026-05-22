@@ -71,16 +71,10 @@ const searchIndex = allSearchPosts.map((post) => ({
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FHHNFNDEPZ"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);} 
-  // Google Consent Mode v2: default denied until user grants consent.
-  // Call gtag('consent','update', { 'analytics_storage':'granted' }) when consent is given.
-  gtag('consent','default',{
-    'ad_storage':'denied',
-    'analytics_storage':'denied',
-    'wait_for_update': 500
-  });
+  function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-FHHNFNDEPZ', { 'anonymize_ip': true });
+
+  gtag('config', 'G-FHHNFNDEPZ');
 </script>
   <head>
   <link rel="manifest" href="/site.webmanifest" />
