@@ -1,0 +1,16 @@
+/* TEAM */
+
+Brand: GinkgoQ
+Website: https://ginkgoq.github.io/
+Contact: hello@ginkgoq.ai
+
+Lead:
+Arman Asgharpoor
+
+/* SITE */
+
+Name: GinkgoQ
+Description: Deep-tech AI for real-world systems.
+Topics: AI systems, speech AI, healthcare AI, pharma AI, document intelligence, RAG, agents, datasets, models, production infrastructure.
+Stack: Astro, TypeScript, Markdown/MDX, GitHub Pages.
+Language: English

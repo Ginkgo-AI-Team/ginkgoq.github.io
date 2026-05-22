@@ -1,0 +1,3 @@
+Contact: mailto:ai-team@ginkoq.com
+Preferred-Languages: en
+Canonical: https://ginkgoq.github.io/.well-known/security.txt
