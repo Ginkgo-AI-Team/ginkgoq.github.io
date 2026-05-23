@@ -22,22 +22,22 @@ const latestPosts = allPosts.slice(0, 3);
 const processSteps = [
   {
     title: "Sense",
-    description: "Capture the right signals.",
+    description: ["Capture the right", "signals."],
     icon: "/images/home/sense.svg",
   },
   {
     title: "Structure",
-    description: "Organize chaos into context.",
+    description: ["Organize chaos", "into context."],
     icon: "/images/home/structure.svg",
   },
   {
     title: "Reason",
-    description: "Apply models that understand.",
+    description: ["Apply models", "that understand."],
     icon: "/images/home/reason.svg",
   },
   {
     title: "Act",
-    description: "Deliver intelligence that matters.",
+    description: ["Deliver intelligence", "that matters."],
     icon: "/images/home/act.svg",
   },
 ];
@@ -82,14 +82,22 @@ const getReadTime = (post) => {
           <BrandText text={siteConfig.brand.label} />
         </p>
         <span class="hero-rule" aria-hidden="true"></span>
-        <h1 id="hero-heading">Turning complex signals into real-world <span>intelligence.</span></h1>
+        <h1 id="hero-heading">Build AI systems for <span>real world.</span></h1>
 
         <div class="process-steps" aria-label="GinkgoQ process">
           {processSteps.map((step) => (
             <article class="process-step">
               <span class="step-icon" style={`--icon-url: url("${step.icon}")`} aria-hidden="true"></span>
               <h2>{step.title}</h2>
-              <p>{step.description}</p>
+              <p>
+<p>
+  {(Array.isArray(step.description) ? step.description : [step.description]).map((line, index, lines) => (
+    <>
+      <span>{line}</span>
+      {index < lines.length - 1 && <br />}
+    </>
+  ))}
+</p>
             </article>
           ))}
         </div>
@@ -283,12 +291,12 @@ const getReadTime = (post) => {
   }
 
   .process-steps {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0;
-    width: min(100%, 560px);
-    margin-top: clamp(2.8rem, 6vw, 4.4rem);
-  }
+  display: grid;
+  grid-template-columns: repeat(4, minmax(7.5rem, 1fr));
+  gap: 0;
+  width: min(100vw - 8rem, 360px);
+  margin-top: clamp(1.8rem, 6vw, 4.4rem);
+}
 
   .process-step {
     min-width: 0;
@@ -297,7 +305,6 @@ const getReadTime = (post) => {
   }
 
   .process-step:first-child {
-    padding-left: 0;
     border-left: 0;
   }
 
@@ -440,19 +447,40 @@ const getReadTime = (post) => {
   .sec-row a:hover { gap: 0.55rem; }
 
   .home-post-row {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: baseline;
     gap: 2rem;
     padding: 1.35rem 0;
     border-bottom: 1px solid var(--color-line);
-    transition: border-color 240ms var(--ease), background-color 240ms var(--ease);
+    transition: border-color 240ms var(--ease);
     color: inherit;
     text-decoration: none;
   }
 
-  .home-post-row:hover {
+  .home-post-row::before {
+    content: "";
+    position: absolute;
+    inset: 0 -1.2rem;
+    z-index: 0;
     background: var(--color-surface-2);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-sm);
+    opacity: 0;
+    transform: scaleY(0.96);
+    transition: opacity 180ms var(--ease), transform 180ms var(--ease), background-color 240ms var(--ease), border-color 240ms var(--ease);
+  }
+
+  .home-post-row:hover::before {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  .home-post-row-inner,
+  .home-post-read {
+    position: relative;
+    z-index: 1;
   }
 
   .home-post-row-inner { min-width: 0; }

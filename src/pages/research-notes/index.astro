@@ -12,8 +12,8 @@ const getSlug = (id: string) => id.replace(/\.mdx?$/, "");
 <BaseLayout title={siteConfig.pages.researchNotes.title} description={siteConfig.pages.researchNotes.description}>
   <section class="rn-listing container" aria-labelledby="rn-heading">
     <span class="eyebrow">Research Notes</span>
-    <h1 id="rn-heading">Research Notes</h1>
-    <p class="rn-desc">Technical notes, paper observations, experiments, and AI system analysis.</p>
+    <h1 id="rn-heading">Technical analysis and insights</h1>
+    <p class="rn-desc">Short-form technical articles on system design, evaluation frameworks, reliability patterns, and production challenges.</p>
 
     <div class="rn-items" role="list">
       {posts.map((post) => (

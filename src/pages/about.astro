@@ -5,8 +5,8 @@ import { siteConfig } from "../config/site.config";
 
 <BaseLayout title={siteConfig.pages.about.title} description={siteConfig.pages.about.description}>
   <section class="about-hero container" aria-labelledby="about-heading">
-    <span class="eyebrow">About</span>
-    <h1 id="about-heading">We build practical AI for the real world.</h1>
+    <span class="eyebrow">About us</span>
+    <h1 id="about-heading">Building production AI systems that extract real value.</h1>
     <p class="about-lead">{siteConfig.pages.about.lead}</p>
   </section>
 
@@ -14,42 +14,66 @@ import { siteConfig } from "../config/site.config";
     <div class="about-grid">
       <div class="about-block">
         <h2>Our approach</h2>
-        <p>We build systems that go beyond benchmark performance. Real-world AI requires extraction, validation, reasoning pipelines, and domain-specific constraints, not just a model and a retrieval layer.</p>
-        <p>We publish our thinking openly through the blog and research notes, and collaborate with teams where technical depth is needed.</p>
+        <p>We focus on the gap between benchmark performance and production reality. Building AI systems that work requires more than picking the right model—it demands extraction pipelines, validation layers, evaluation frameworks, and architecture decisions grounded in real-world constraints.</p>
+        <p>We share what we learn through detailed technical writing and partner with teams facing genuine complexity in their AI systems.</p>
       </div>
 
       <div class="about-block">
-        <h2>Research focus</h2>
+        <h2>What we focus on</h2>
         <ul class="focus-list">
-          <li>AI systems architecture and production infrastructure</li>
-          <li>Domain intelligence: extraction, validation, reasoning</li>
-          <li>RAG pipelines and beyond-retrieval techniques</li>
-          <li>Datasets, evaluation, and model reliability</li>
-          <li>Language understanding for specialized domains</li>
+          <li>Building validation pipelines</li>
+          <li>Designing AI system architecture for production deployment</li>
+          <li>Evaluation frameworks and reliability benchmarks</li>
+          <li>Domain-specific intelligence and context integration</li>
+          <li>Real-world challenges in retrieval, reasoning, and automation</li>
         </ul>
       </div>
 
       <div class="about-block">
-        <h2>Publications</h2>
-        <p>We share what we learn through detailed technical writing. The blog covers build logs, engineering analysis, and product thinking. Research Notes covers experiments, paper observations, and system analysis.</p>
+        <h2>How we share knowledge</h2>
+        <p>Our blog offers in-depth technical guides and case studies from the field. We write about what works, what doesn't, and the engineering decisions behind production AI systems. Research Notes provide focused technical analysis on specific challenges and system design patterns.</p>
       </div>
 
       <div class="about-block">
-        <h2>Open to collaboration</h2>
-        <p>We work with teams that need deep AI expertise: architecture reviews, pipeline design, dataset development, and evaluation frameworks.</p>
-        <p>If you're working on a hard AI problem, we'd like to hear about it.</p>
+        <h2>Working together</h2>
+        <p>We collaborate with teams solving real problems in production AI—whether that's designing extraction pipelines, building evaluation frameworks, optimizing system architecture, or developing datasets for specialized domains.</p>
+        <p>If you're working on a challenging AI problem that requires hands-on technical depth, let's connect.</p>
       </div>
     </div>
 
     <section class="badge-row" aria-label="External profiles">
-      <a class="badge badge-github" href={siteConfig.author.github} target="_blank" rel="noopener noreferrer">
-        <strong>GitHub</strong>
-        <span>Browse our code</span>
-      </a>
-      <a class="badge badge-hf" href={siteConfig.author.huggingFace} target="_blank" rel="noopener noreferrer">
-        <strong>Hugging Face</strong>
-        <span>Explore our models</span>
-      </a>
+     <a
+  class="badge badge-github"
+  href={siteConfig.author.github}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <span class="badge-icon badge-icon-github" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+      <path d="M12 2C6.477 2 2 6.486 2 12.021c0 4.428 2.865 8.184 6.839 9.509.5.092.682-.217.682-.483 0-.238-.009-1.029-.014-1.868-2.782.605-3.369-1.18-3.369-1.18-.455-1.159-1.11-1.467-1.11-1.467-.908-.621.069-.608.069-.608 1.004.071 1.532 1.033 1.532 1.033.892 1.531 2.341 1.089 2.91.833.091-.647.349-1.089.635-1.34-2.221-.253-4.555-1.113-4.555-4.956 0-1.094.39-1.989 1.029-2.689-.103-.254-.446-1.273.098-2.653 0 0 .84-.27 2.75 1.027A9.566 9.566 0 0 1 12 6.844c.85.004 1.705.115 2.505.337 1.908-1.297 2.747-1.027 2.747-1.027.545 1.38.202 2.399.1 2.653.64.7 1.028 1.595 1.028 2.689 0 3.852-2.337 4.7-4.565 4.948.359.31.678.921.678 1.856 0 1.34-.012 2.421-.012 2.75 0 .268.18.58.688.482A10.025 10.025 0 0 0 22 12.021C22 6.486 17.523 2 12 2Z" />
+    </svg>
+  </span>
+
+  <span class="badge-copy">
+    <strong>GitHub</strong>
+    <span>Browse our code</span>
+  </span>
+</a>
+      <a
+  class="badge badge-hf"
+  href={siteConfig.author.huggingFace}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <span class="badge-icon" aria-hidden="true">
+    <img src="/icons/hf-logo.svg" alt="" width="24" height="24" loading="lazy" decoding="async" />
+  </span>
+
+  <span class="badge-copy">
+    <strong>Hugging Face</strong>
+    <span>Explore our models</span>
+  </span>
+</a>
     </section>
 
     <div class="contact-band">
@@ -66,6 +90,65 @@ import { siteConfig } from "../config/site.config";
 </BaseLayout>
 
 <style>
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.badge-icon {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  flex: 0 0 auto;
+  transition:
+    border-color 180ms var(--ease),
+    background-color 180ms var(--ease),
+    color 180ms var(--ease);
+}
+
+.badge-icon img {
+  display: block;
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.badge:hover .badge-icon {
+  border-color: color-mix(in srgb, var(--color-accent) 42%, var(--color-line));
+  background: color-mix(in srgb, var(--color-accent) 8%, var(--color-surface));
+  color: var(--color-accent);
+}
+
+.badge-copy {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.badge-copy strong {
+  color: var(--color-text);
+  font-size: 0.92rem;
+  line-height: 1.2;
+}
+
+.badge-copy span {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  line-height: 1.3;
+}
+.badge-icon-github {
+  color: #101114;
+}
+
+:global([data-theme="dark"]) .badge-icon-github {
+  color: #ffffff;
+}
   .about-hero {
     padding: 96px 0 64px;
     border-bottom: 1px solid var(--color-line);

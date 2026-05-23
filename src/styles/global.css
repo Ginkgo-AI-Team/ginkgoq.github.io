@@ -365,45 +365,80 @@ img, svg {
 .badge-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin: 2rem 0 0;
+  gap: 0.85rem;
+  margin: 2.3rem 0 0;
 }
 
 .badge {
+  --badge-brand: var(--color-accent);
+  --badge-brand-soft: var(--color-accent-muted);
   display: inline-flex;
-  align-items: flex-start;
-  gap: 0.65rem;
-  min-width: 170px;
-  padding: 1rem 1.1rem;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-md);
-  background: var(--color-surface-2);
+  align-items: center;
+  gap: 0.8rem;
+  min-width: 218px;
+  padding: 0.82rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--badge-brand) 42%, var(--color-line));
+  border-radius: var(--radius-sm);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--badge-brand-soft) 84%, transparent), transparent 78%),
+    var(--color-surface-2);
   color: var(--color-text);
   text-decoration: none;
-  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease, background-color 240ms var(--ease);
 }
 
 .badge:hover {
-  border-color: var(--color-accent-soft);
-  transform: translateY(-1px);
+  border-color: var(--badge-brand);
+  box-shadow: 0 12px 34px color-mix(in srgb, var(--badge-brand) 18%, transparent);
+  transform: translateY(-2px);
+}
+
+.badge-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  color: var(--badge-icon-color, #fff);
+  background: var(--badge-icon-bg, var(--badge-brand));
+  flex-shrink: 0;
+}
+
+.badge-icon svg {
+  display: block;
+}
+
+.badge-copy {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
 }
 
 .badge strong {
   display: block;
-  font-size: 0.95rem;
+  color: var(--color-text);
+  font-size: 0.94rem;
   font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
-.badge span {
+.badge-copy > span {
   color: var(--color-muted);
-  font-size: 0.85rem;
-  line-height: 1.5;
+  font-size: 0.8rem;
+  line-height: 1.35;
 }
 
 .badge-github {
-  border-color: #1f2937;
+  --badge-brand: #6e7681;
+  --badge-brand-soft: rgb(110 118 129 / 0.16);
+  --badge-icon-bg: #24292f;
+  --badge-icon-color: #ffffff;
 }
 
 .badge-hf {
-  border-color: #f2b803;
+  --badge-brand: #ffb000;
+  --badge-brand-soft: rgb(255 176 0 / 0.16);
+  --badge-icon-bg: #fff4bf;
+  --badge-icon-color: #3b2f1d;
 }

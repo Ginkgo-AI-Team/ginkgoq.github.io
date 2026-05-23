@@ -27,11 +27,17 @@ function slugToLabel(route: string) {
 }
 
 function normalizeRoute(filePath: string) {
-  return filePath
+  let route = filePath
     .replace('../pages', '')
     .replace(/\.astro$/, '')
-    .replace(/\/index$/, '/')
-    .replace(/\/$/, '/') || '/';
+    .replace(/\/index$/, '/');
+  
+  // Ensure all routes except root have trailing slashes
+  if (route !== '/' && !route.endsWith('/')) {
+    route += '/';
+  }
+  
+  return route || '/';
 }
 
 const order = siteConfig.nav.order;

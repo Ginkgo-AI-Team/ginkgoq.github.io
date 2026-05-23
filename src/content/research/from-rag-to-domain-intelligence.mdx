@@ -1,46 +1,46 @@
 ---
-title: "From RAG to Domain Intelligence"
-description: "RAG is not the product. It is the retrieval layer. Real-world AI systems need extraction, validation, reasoning, auditability, and workflow integration."
+title: "Beyond RAG: building domain intelligence systems"
+description: "Retrieval is just the foundation. Production AI systems need extraction, validation, confidence scoring, and domain reasoning."
 date: 2026-05-04
 category: "Research Note"
-tags: ["AI Systems"]
+tags: ["AI Systems", "Architecture", "Production"]
 draft: false
 ---
 
-## The limitation of RAG
+## RAG is not the complete solution
 
-Retrieval-Augmented Generation has become the default architecture for many AI applications. It improves factuality and reduces hallucination, but it is still only a retrieval layer.
+Retrieval-Augmented Generation has become the standard architecture for incorporating external knowledge. It does improve factuality and reduce hallucination, but it's fundamentally a retrieval layer—it finds relevant information.
 
-> RAG finds information. It does not understand it. It does not validate it. It does not act on it.
+> RAG retrieves information. It does not understand it, validate it, normalize it, or determine what should happen next.
 
-## Beyond retrieval
+That gap between retrieval and action is where most real-world AI work happens.
 
-Real-world systems need more than retrieving documents. They need a pipeline that can turn unstructured information into reliable, actionable intelligence.
+## The complete pipeline
 
-<div class="pipeline">
-  <span>Ingestion</span>
-  <span>→</span>
-  <span>Retrieval</span>
-  <span>→</span>
-  <span>Extraction</span>
-  <span>→</span>
-  <span>Validation</span>
-  <span>→</span>
-  <span>Reasoning</span>
-  <span>→</span>
-  <span>Action</span>
-</div>
+Production systems need layers beyond retrieval. Each layer adds value:
 
-This pipeline is where domain intelligence emerges. Each step adds a layer of understanding, quality, and context.
+**Ingestion** → Bring data into the system, standardize formats, make it searchable
 
-## Domain intelligence layer
+**Retrieval** → Find relevant documents and passages given a query
 
-The domain intelligence layer sits on top of retrieval and turns raw information into decision-ready knowledge.
+**Extraction** → Pull structured values from unstructured text (entities, dates, amounts, relationships)
 
-- Entity and event extraction
-- Normalization and canonicalization
-- Consistency checks and validation
-- Business rules and domain constraints
-- Confidence scoring and provenance
+**Validation** → Check extracted values against business rules, consistency constraints, and data quality standards
 
-This is what makes AI systems reliable in production.
+**Reasoning** → Apply domain logic to synthesize decisions from multiple data points
+
+**Action** → Convert the result into the decision or output the system is designed to produce
+
+Each stage depends on the previous one working correctly. Retrieval without validation wastes time on unverified information. Extraction without reasoning produces disconnected facts instead of insights.
+
+## Domain intelligence: the missing layer
+
+Domain intelligence is what sits between raw retrieval and business value. It includes:
+
+- Entity extraction and normalization (recognizing that "Robert Smith" and "R. Smith" might be the same person)
+- Consistency checking (flagging when retrieved data contradicts itself)
+- Business rule application (enforcing policies specific to your domain)
+- Confidence and uncertainty representation (being explicit about what you don't know)
+- Provenance tracking (knowing where each piece of information came from)
+
+This layer determines whether an AI system is reliable enough to use in production or just a research prototype.

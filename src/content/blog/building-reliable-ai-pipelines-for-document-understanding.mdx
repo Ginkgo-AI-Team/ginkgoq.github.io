@@ -1,25 +1,33 @@
 ---
-title: "Building reliable AI pipelines for document understanding"
-description: "How extraction, validation, and confidence scoring make document AI production-ready."
+title: "Building reliable extraction pipelines for document understanding"
+description: "How structured validation, confidence scoring, and observability turn document AI from prototype to production."
 date: 2026-05-08
 category: "Engineering"
-tags: ["Documents", "Pipelines", "Production"]
+tags: ["Documents", "Pipelines", "Production", "Validation"]
 draft: false
 ---
 
-## Documents need structure
+## The real requirement: structured data, not summaries
 
-Document AI is rarely about summarizing a file. Teams usually need structured fields, normalized entities, source references, and enough confidence information to decide whether automation is appropriate.
+Document AI rarely stops at summarization. In production, teams need extracted entities, normalized values, source references, and confidence scores that actually inform downstream decisions.
 
-## A practical pipeline
+The challenge isn't extracting information—it's extracting it reliably enough to make automation worthwhile. A system that catches 95% of cases might save work on some documents but create more work on others when errors go undetected.
 
-The useful pattern is a chain of small checks. Parse the document, retrieve relevant spans, extract structured values, validate them against rules, then score the result.
+## A practical architecture
+
+The reliable pattern treats extraction as a pipeline of observable stages. Each step produces output that feeds into the next, with validation and confidence signals at each point.
 
 ```python
 def process_document(document, extractor, validator):
+    # Extract structured fields from the document
     fields = extractor.extract(document)
+
+    # Validate against business rules and format requirements
     issues = validator.check(fields)
+
+    # Score confidence accounting for validation problems
     confidence = max(0.0, fields.confidence - 0.12 * len(issues))
+
     return {
         "fields": fields,
         "issues": issues,
@@ -27,6 +35,15 @@ def process_document(document, extractor, validator):
     }
 ```
 
-## Production readiness
+Each function should return not just data but also the logic trail—where values came from, what checks passed or failed, and what uncertainty remains.
 
-Reliability comes from making each stage observable. The system should show where values came from, why validation failed, and when a human should review the output.
+## Production requires observability
+
+Reliability emerges from transparency. At each stage, the system needs to show:
+
+- Where extracted values originated (which part of the document, what model confidence)
+- Which validation rules passed and which failed
+- Why the final confidence score is what it is
+- Which cases need human review
+
+Without this information, you can't improve the system, audit decisions, or build trust with users who need to act on the results. A human reviewing cases should understand why the system extracted what it did and why validation flagged particular fields.
